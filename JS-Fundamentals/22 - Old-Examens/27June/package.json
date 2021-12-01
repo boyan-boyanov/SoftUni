@@ -1,0 +1,19 @@
+{
+  "name": "27june",
+  "version": "1.0.0",
+  "description": "",
+  "main": "testNumbers.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.2"
+  }
+}
