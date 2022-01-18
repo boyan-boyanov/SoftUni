@@ -1,0 +1,54 @@
+body {
+    margin: 0x;
+    padding: 0px;
+    background-color: #CCCCCC;
+}
+
+ul {
+    background-color: #444;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    }
+
+li {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 40px;
+    height: 40px;
+    padding: 20px;
+    }
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+header h1 {
+    font-size: 28px;
+}
+
+header p {
+    font-style: italic;
+}
+
+.par {
+    font-size: 24px;
+}
+
+section {
+    margin-left: 20px;
+}
+
+footer{
+    background-color: #444;
+        
+    }
+
+    footer p{
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    }
+    
