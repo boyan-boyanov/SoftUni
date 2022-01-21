@@ -1,0 +1,49 @@
+html{
+    margin: 20px 100px 20px 100px;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family:Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+font-family: Georgia, serif;
+}
+
+table {
+    border: 1px solid rgb(221, 221, 221);
+    }
+    table{
+        width: 100%;
+    }
+
+#thead{
+    background: #CCC
+}
+
+tr:nth-child(odd) {background: rgb(241, 241, 241)}
+
+tbody tr:hover {
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+
+.vl {
+    border-left: 2px solid rgb(221,221,221);       
+    font-style: italic;
+    margin-left: 40px;
+    top: 0;
+    margin-right: 20px;
+  }
+
+  .line{
+      padding-left: 20px;
+  }
+
+  #name {
+      text-align: right;
+  }
+
+  blockquote {
+      font-style: italic;
+  }
