@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+.gallery {
+    max-width: 1100px;
+}
+.gallery li {
+    position: relative;
+    border: 0.4rem solid black;
+    display: inline-block;
+    margin: 1%;
+    max-width: 300px;
+    width: 30%;
+    max-height: 450px;
+    vertical-align: middle;
+    
+   }
+
+  .gallery img {
+      width: 100%;
+      padding: 4%;           
+  }
