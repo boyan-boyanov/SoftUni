@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    max-width: 800px;
+    max-height: 800px;
+}
+
+h1 {
+    font-size: 10px;
+    width: 300px;
+    position: absolute;
+    top: 60px;
+    left: 180px;
+    color: antiquewhite;
+    text-shadow: 1px 1px 20px black;
+    transform: translate(-30%, -100%);
+}
+
+img {
+    max-width: 100%;
+   
+}
