@@ -1,0 +1,204 @@
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css");
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Helvetica, sans-serif;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+section {
+    margin-left: 50px;
+
+
+}
+
+header h1 {
+    display: inline-block;
+    padding-right: 20px;
+    border-right: 1px solid lightgray;
+    text-transform: uppercase;
+}
+
+header p {
+    display: inline-block;
+    padding-left: 20px;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #9F9893;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav ul li {
+    display: inline-block;
+    background-color: #ECECEC;
+    padding: 10px 20px;
+}
+
+
+
+nav ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #30373F;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+}
+
+nav ul li.first {
+    background-color: #E24E2A;
+
+}
+
+nav ul li.first a {
+    color: #ECECEC;
+}
+
+.img-wraper {
+    width: 100vw;
+    max-height: 500px;
+    overflow: hidden;
+
+}
+
+.img-wraper img {
+    width: 100%;
+    object-fit: fill;
+    margin-top: -18%;
+
+}
+
+p.info {
+    background-color: #E24E2A;
+    color: #ECECEC;
+    padding: 40px 100px 80px 100px;
+    line-height: 2;
+    text-align: center;
+    margin-top: 0px;
+    width: 100vw;
+}
+
+.info a {
+    color: #ECECEC;
+}
+
+main section.icons {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #383838;
+    width: 100vw;
+    margin-top: -17px;
+    margin-left: 0px;
+}
+
+main section.icons article {
+    display: flex;
+    flex-direction: column;
+    width: 22vw;
+    justify-content: center;
+    margin-top: 100px;
+    padding-bottom: 100px;
+}
+
+main section.icons article i {
+    background-color: #E24E2A;
+    font-size: 60px;
+    padding: 20px;
+    color: white;
+    align-self: center;
+}
+
+main section.icons article h4 {
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    border-bottom: 1px solid #4C4C4C;
+    width: 100%;
+    padding-bottom: 20px;
+    left: 50%;
+}
+
+.first-h4 {
+    padding-top: 20px;
+}
+
+main section.icons article p {
+    color: #4C4C4C;
+}
+
+.button {
+    padding: 50px 100px;
+    text-align: center;
+}
+
+.button h2{
+    color: #808080;
+    font-weight: lighter;
+}
+
+.button p{
+    font-size: 13px;
+    color: #9c9a98;
+   margin-top: -15px;
+}
+
+.button button {
+    border: none;
+    letter-spacing: 2px;
+    font-size: 11px;
+    padding: 15px 35px;
+    background-color: #1B9772;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.final {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #383838;
+    width: 100vw;
+    margin-top: -17px;
+    margin-left: 0px;
+    color: rgb(236, 227, 227);
+}
+
+.final article {
+    width: 20vw;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.final article p{
+    padding-top: 20px;
+    font-size: 14px;
+    line-height: 2;
+    color: #4C4C4C;
+    text-align: center;
+}
+
+
+footer {
+    background-color: #1B9772;
+    padding: 50px 150px;
+    width: 100vw;
+    color: #59af8b;
+    letter-spacing: 1.5px;
+    font-size: 14px;
+}
+
+footer strong {
+    color: #7cc7a8;
+
+}
