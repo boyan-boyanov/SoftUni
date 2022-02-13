@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: lightgray;
+}
+
+header, main, aside, footer {
+    text-transform: uppercase;
+    border: 1 solid black;
+    border-radius: 4px;
+    box-shadow: black;
+    background-color: whitesmoke;
+}
+
+header {
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 300px;
+
+}
+
+main {
+    flex-basis: 60%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 450px;
+
+}
+
+aside {
+    flex-basis: 30%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 450px;
+
+}
+
+footer {
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 150px;
+}
