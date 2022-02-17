@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+
+}
+
+section {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+div{
+    align-items: center;
+}
+
+img {
+  width: 100px;
+  height: 300px;
+  border-radius: 10px;
+  
+
+}
+
+.second {
+    width: 350px;
+    padding: 0px 10px;
+    background-color: black;
+}

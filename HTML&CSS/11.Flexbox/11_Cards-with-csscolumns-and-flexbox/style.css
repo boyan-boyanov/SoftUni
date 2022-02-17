@@ -1,0 +1,63 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    background-color: rgb(238, 238, 238);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1000px;
+    min-width: 610px;
+}
+
+.cards-layout  {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-height: 1800px;
+
+
+}
+
+.card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    max-width: 30%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+
+}
+
+img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+section {
+    padding: 5px 20px 80px 20px;
+   
+}
+
+footer {
+    padding: 0px 20px 5px 20px;
+    position: absolute;
+    bottom: 10px;
+    border-top: 1px solid rgb(238, 238, 238);
+}
+
+.flex-layout {
+    position: relative;
+    
+}
+
+.flex {
+    flex-direction: row;
+}

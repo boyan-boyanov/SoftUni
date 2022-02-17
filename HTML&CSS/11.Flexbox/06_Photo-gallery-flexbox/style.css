@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    max-width: 1160px;
+    flex-wrap: wrap;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+li {
+    display: flex;
+    list-style-type: none;
+    border: 6px solid black;
+    margin: 10px;
+}
+
+img {
+    align-self: center;
+    padding: 40px 10px;
+
+}
