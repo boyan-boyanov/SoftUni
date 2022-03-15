@@ -1,0 +1,345 @@
+@import url("./reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://use.fontawesome.com/releases/v6.0.0/css/all.css");
+
+header {
+    font-family: Ubuntu, serif;
+    background-color: black;
+    color: #EA5B1B;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+}
+
+header .logo {
+    width: 200px;
+}
+
+header .logo img {
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.menu-triger {
+    font-size: 40px;
+    align-self: center;
+    margin-right: 20px;
+    display: none;
+    width: 5%;
+}
+#menuBtn{
+    width: 20px;
+    height: 20px
+}
+.menu-triger a img {
+    width: 100%;
+}
+
+.menuBtn{
+    width: 100%;
+}
+
+.menu-triger a {
+    color: #EA5B1B;
+}
+
+.fa-bars:hover {
+    color: #D02B16;
+    transition: 300ms ease-in-out;
+}
+
+
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    justify-content: center;
+}
+
+.header-nav ul {
+    display: flex;
+    gap: 15px;
+    list-style-type: none;
+    }
+
+    .header-nav li {
+        list-style-type: none;
+    }
+
+    .header-nav ul a {
+        text-decoration: none;
+        color: #EA5B1B;
+        letter-spacing: 1.1px;
+        
+    }
+
+    .header-nav ul a:hover {
+        color: #D02B16;
+        transition: 300ms ease-in-out;
+    }
+
+    li a.header-nav-reserve {
+        background-color: #EA5B1B;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    li a.header-nav-reserve:hover {
+        background-color: black;
+        color: #D02B16;
+        transition: 300ms ease-in-out;
+    }
+
+    .header-links ul {
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-right: 40px;
+        align-items: center;
+    }
+    
+    .header-links-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    
+    }
+
+    .header-links-icons li {
+        flex-grow: 1;
+    
+    }
+
+    .fa-whatsapp, .fa-viber {
+        background-color: rgb(90, 88, 88);
+        padding: 5px 2px 5px 5px;
+        width: 100%;
+        border-radius: 5px;
+        color: #EA5B1B;
+        width: 30px;
+        
+    }
+    
+    .fa-whatsapp:hover {
+        background-color: #64BB53;
+        fill: antiquewhite;
+        transition: 300ms ease-in-out;
+    }
+    
+    .fa-viber:hover {
+        background-color: #7B519D;
+        fill: antiquewhite;
+        transition: 300ms ease-in-out;
+    }
+
+    .fa-viber path:hover{
+        fill: antiquewhite;
+    }
+    
+    .phone-number a {
+        font-size: 1.1rem;
+        color: #EA5B1B;
+        text-decoration: none;
+        word-spacing: -1px;
+    }
+    
+    .phone-number a:hover {
+        color: #D02B16;
+        transition: 300ms ease-in-out;
+    }
+
+    header .btn-profile a {
+        background-color: #D02B16;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: black;
+        text-decoration: none;
+        text-transform: uppercase;
+        word-spacing: 5px;
+    }
+    
+    header .btn-profile a:hover {
+        background-color: #008000;
+        color: antiquewhite;
+        transition: 300ms ease-in-out;
+    }
+    
+    .hidden-nav-bar li a {
+        text-decoration: none;
+        letter-spacing: 1.1px;
+    }
+    
+    .hidden-nav-bar li a:hover {
+        color: #D02B16;
+        transition: 300ms ease-in-out;
+    }
+    
+    .hidden-nav-bar a {
+        color: #EA5B1B;
+    }
+    
+    .hidden-nav-bar .btn-profile a:hover {
+        color: antiquewhite;
+    }
+    
+    .hidden-nav-bar {
+        position: absolute;
+        font-size: 1rem;
+        width: 100vw;
+        background-color: black;
+        top: 108px;
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 20px;
+        align-items: center;
+        padding-top: 10px;
+        flex-wrap: wrap;
+    
+    }
+    
+    #myprofile, #reserved, .hidden-nav-bar {
+        position: relative;
+        display: none;
+    }
+    
+    @media screen and (max-width: 1300px) {
+    
+    
+        .header-nav {
+            margin-right: 30px;
+            width: 400px;
+        }
+    
+        .header-nav ul {
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-basis: 80%;
+        }
+    
+        .header-nav ul li {
+            flex-basis: 48%;
+            flex-shrink: 1;
+        }
+    }
+    
+    @media screen and (max-width: 1125px) {
+        .header-nav ul {
+            display: none;
+        }
+    
+        nav.header-nav {
+            margin-right: 30px;
+            flex-basis: 20%;
+            flex-grow: 0;
+        }
+    
+        .menu-triger {
+            display: block;
+            position: relative;
+        }
+    
+        .hidden-nav-bar {
+           position: absolute;
+    
+        }
+    }
+    
+    @media screen and (max-width: 900px) {
+        #reserved {
+            display: block;
+        }
+    
+        .header-nav {
+            display: none;
+        }
+    
+        .header-links-icons {
+            flex-direction: row;
+        }
+    
+        .header-links ul {
+            flex-wrap: wrap;
+            gap: 5px;
+            flex-direction: column;
+            justify-content: center;
+        }
+    
+        .btn-profile {
+            position: absolute;
+            right: 10px;
+        }
+    
+        header {
+            justify-content: space-between;
+            padding-right: 150px;
+        }
+    }
+    
+    @media screen and (max-width: 730px) {
+        .hidden-nav-bar {
+            gap: 20px;
+            justify-content: center;
+        }
+       
+        .hidden-nav-bar li {
+            flex-basis: 30%;
+        }
+    }
+    
+    @media screen and (max-width: 600px) {
+        .hidden-nav-bar {
+            top: 81px;
+            padding-left: 5px;
+        }
+    
+        #myprofile{
+            display: block;
+            flex-grow: 1;
+            
+        }
+    
+        .btn-profile {
+            display: none;
+        }
+    
+        header {
+            padding-right: 0px;
+        }
+    
+        .header-links ul {
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+    
+        .header-links ul a {
+            font-size: 0.9rem;
+        }
+    
+        header .logo {
+            width: 150px;
+        }
+    }
+    
+    @media screen and (max-width: 470px){
+        .hidden-nav-bar li {
+            flex-basis: 40%;
+        }
+    
+        .hidden-nav-bar{
+            justify-content: left;
+            padding-left: 40px;
+        }
+    }
+    
+    /* TEST HOOVER - ON CLICK*/  
