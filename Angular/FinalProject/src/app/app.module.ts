@@ -7,8 +7,6 @@ import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { LandingHomeService } from './services/landing-home.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeCardComponent } from './home-card/home-card.component';
@@ -17,7 +15,10 @@ import { AllCarsService } from './services/all-cars.service';
 import { AddNewCarComponent } from './add-new-car/add-new-car.component';
 import { FormsModule } from '@angular/forms';
 import { AddCarsService } from './services/add-cars.service';
-import { IRAIAModule } from './iraia/iraia.module';
+import { EditCarComponent } from './edit-car/edit-car.component';
+import { EditCarService } from './services/edit-car.service';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -26,20 +27,20 @@ import { IRAIAModule } from './iraia/iraia.module';
     HomePageComponent,
     WelcomeComponent,
     FooterComponent,
-    LoginComponent,
-    RegisterComponent,
     HomeCardComponent,
     CarComponent,
-    AddNewCarComponent
+    AddNewCarComponent,
+    EditCarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    IRAIAModule,
+    AuthRoutingModule,
+    AuthModule
   ],
-  providers: [LandingHomeService, AllCarsService, AddCarsService],
+  providers: [LandingHomeService, AllCarsService, AddCarsService, EditCarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

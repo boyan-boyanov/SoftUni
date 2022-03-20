@@ -1,4 +1,4 @@
-<div class="carContainer">
+<div class="carContainer" *ngIf="!isLoading; else loadingIndicator">
 
     <article class="carTemlate" *ngFor="let car of allCars">
         <div class="carTemlate-img">
@@ -28,9 +28,13 @@
         <div class="buttons">
             <button class="reserve">Reserve Now</button>
             <button class="addFavorite">Use Latter</button>
-            <button class="edit">EDIT</button>
+            <button *ngIf="admin" class="edit"  id="{{car.objectId}}" (click)="editCar($event)">EDIT</button>
         </div>
-    </article>
-   
-
+    </article>   
 </div>
+
+<ng-template #loadingIndicator>
+    <div class="ring">Loading
+        <span class="loader"></span>
+      </div>
+</ng-template>

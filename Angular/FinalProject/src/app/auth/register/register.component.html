@@ -1,0 +1,32 @@
+<section id="register-page" class="content auth">
+    <form id="register" #userForm="ngForm" (ngSubmit)="onSubmit($event)" novalidate>
+        <div class="container">
+            <div class="brand-logo"></div>
+            <h1>Register</h1>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Name..." required 
+                #username="ngModel" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="loginModel.username">
+                <small class="errorMessage" [class.d-none]="username.valid || username.untouched">Username required</small>
+
+            <label for="email">Email:</label>
+            <input type="email" id="emailId" name="emailId" placeholder="Sokka@gmail.com" required email
+                #email="ngModel" [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="loginModel.email">
+
+            <small class="errorMessage" [class.d-none]="email.valid || email.untouched">Invalid email</small>
+
+            <label for="pass">Password:</label>
+            <input type="password" id="login-password" name="password" required pattern=".{6,}" #password="ngModel" [(ngModel)]="loginModel.password">
+            <small class="errorMessage" [class.d-none]="password.valid || password.untouched">Password must be min 6 characters</small>
+
+            <label for="repass">Confirm Password:</label>
+            <input type="password" name="repass" id="repass" #repass="ngModel" [(ngModel)]="loginModel.repass" >
+            
+            <input class="btn submit" type="submit" value="Register">
+            
+            <p class="field">
+                <span>If you already have profile click <a routerLink="/login">here</a></span>
+            </p>
+        </div>
+    </form>
+</section>

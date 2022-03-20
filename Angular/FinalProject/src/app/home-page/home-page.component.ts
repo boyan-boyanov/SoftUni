@@ -19,8 +19,7 @@ export class HomePageComponent implements OnInit {
       this.allCars = this.collectCars.results.slice(0,2)
       this.singleCar = this.allCars[0];
       console.log(this.singleCar);
-      
-
+     
     });
     
   }

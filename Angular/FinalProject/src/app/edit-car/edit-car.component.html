@@ -1,9 +1,9 @@
-<div class="addVarForm">
-    <form id="register" #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+<div class="addVarForm" *ngIf="!isLoading; else loadingIndicator">
+    <form id="register" #userForm="ngForm"  novalidate (ngSubmit)="onSubmit()">
 
         <div class="container">
             <div class="brand-logo"></div>
-            <h1>Add New Car</h1>
+            <h1>Edit Car</h1>
             <div class="alert" *ngIf="errorMsg">
                 {{errorMsg}}
             </div>
@@ -46,8 +46,14 @@
                 [(ngModel)]="carModels.images">
                 <small class="errorMessage" [class.d-none]="images.valid || images.untouched">Please enter a valid URL for car image</small>
 
-            <input [disabled]="userForm.form.invalid"  class="btn submit" type="submit" value="Add this car">
+            <input [disabled]="userForm.form.invalid"  class="btn submit" type="submit" value="Edit this car">
 
         </div>
     </form>
 </div>
+
+<ng-template #loadingIndicator>
+    <div class="ring">Loading
+        <span class="loader"></span>
+      </div>
+</ng-template>

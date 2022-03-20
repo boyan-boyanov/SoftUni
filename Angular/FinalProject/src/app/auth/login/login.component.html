@@ -1,0 +1,24 @@
+<section id="login-page" class="auth">
+    <form id="login" #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="container">
+            <div class="brand-logo"></div>
+            <h1>Login</h1>
+            <label for="emailId">Email:</label>
+            <input type="email" id="emailId" name="emailId" placeholder="Sokka@gmail.com" required email
+                #email="ngModel" [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="loginModel.email">
+
+            <small class="errorMessage" [class.d-none]="email.valid || email.untouched">Invalid email</small>
+
+            <label for="login-pass">Password:</label>
+            <input type="password" id="login-password" name="password" required pattern=".{6,}" #password="ngModel" [(ngModel)]="loginModel.password">
+            <small class="errorMessage" [class.d-none]="password.valid || password.untouched">Password must be min 6 characters</small>
+
+            <input type="submit" class="btn submit" value="Login">
+            <p class="field">
+                <span>If you don't have profile click <a routerLink="/register"
+                        routerLinkActive="active">here</a></span>
+            </p>
+        </div>
+    </form>
+</section>

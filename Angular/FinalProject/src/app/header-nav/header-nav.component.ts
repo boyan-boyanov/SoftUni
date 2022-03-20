@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-header-nav',
   templateUrl: './header-nav.component.html',
@@ -11,9 +12,16 @@ export class HeaderNavComponent implements OnInit {
   viberImg = 'assets/svg/viber-brands.svg' 
   whatsapp = 'assets/svg/whatsapp-brands.svg'
   bars ='assets/svg/bars-solid.svg' 
-  constructor() { }
+  
+    
+  constructor() {
+   
+   
+    
+   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+   
     
   }
   openMenu() {

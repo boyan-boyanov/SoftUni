@@ -1,0 +1,41 @@
+.container {
+    position: relative;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+li a {
+    background-color: #EA5B1B;
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    
+}
+
+li a:hover {
+    background-color: black;
+    color: #D02B16;
+    transition: 300ms ease-in-out;
+    }
+
+    .features{
+        position: relative;
+        background-color: #2e170c;
+        width: 50%;
+        height: 300px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    h1 {position: relative;
+        text-align: center;
+       top: 100px;
+    }
+

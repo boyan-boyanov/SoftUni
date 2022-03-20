@@ -11,9 +11,12 @@ export class AddNewCarComponent implements OnInit {
 
   carModels = new IaddCar('', '', '', 0, 0, 0, '')
   errorMsg = "";
+  
   constructor(private addCarServices: AddCarsService) { }
 
+
   ngOnInit(): void {
+
 
   }
 

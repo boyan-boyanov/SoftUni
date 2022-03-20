@@ -1,0 +1,19 @@
+
+<div class="container" *ngIf="admin">
+    <ul>
+        <li><a routerLink="/admin/newcar">Add new car</a></li>
+        <li><a routerLink="/allcars">List All Cars</a></li>
+        <li><a routerLink="/"  (click)="logout()">Logout</a></li>
+
+    </ul>
+    <div class="features">
+        <h1>More Admin option</h1>
+    </div>
+</div>
+
+<div *ngIf="!admin">
+    <ul>
+        <li><a href="">Show history</a></li>
+        <li><a routerLink="/"  (click)="logout()">Logout</a></li>
+    </ul>
+</div>
