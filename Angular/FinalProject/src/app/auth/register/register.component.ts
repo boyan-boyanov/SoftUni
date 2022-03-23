@@ -22,10 +22,10 @@ export class RegisterComponent implements OnInit {
     
     this.registerServices.register(this.loginModel)
     .subscribe(data => {
-           localStorage.setItem('userData', JSON.stringify(data));
-      if(localStorage.getItem("userData")){
-        this.router.navigate(['/'])
-      }
+          
+      
+        this.router.navigate(['/login'])
+      
             
     },
     error => {

@@ -1,0 +1,60 @@
+
+.top {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: calc(100vw/3);
+    background-color: black;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.top-text {
+    position: relative;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color: #EA5B1B;
+    font-size: 1.3vw;
+}
+
+.top-pic {
+    position: relative;
+    flex-basis: 70%;
+    background-color: black;
+    height: calc(100vw/3);
+}
+
+.top img {
+    width: 100%;
+    height: calc(100vw/3);
+}
+
+.top-center {
+    position: absolute;
+    color: #D02B16;
+    font-size: 3vw;
+    text-transform: capitalize;
+    top: 40px;
+    text-align: center;
+}
+
+.top-center h3 {
+    position: relative;
+    font-size: 3vw;
+    color: #EA5B1B;
+}
+
+.top-center h1{
+    font-size: 4vw;
+}
+
+.filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.3;
+}

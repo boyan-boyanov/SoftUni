@@ -1,0 +1,65 @@
+  
+
+<div class="addVarForm" *ngIf="!isLoading; else loadingIndicator">
+    <form id="register" #userForm="ngForm"  novalidate (ngSubmit)="onSubmit()">
+
+        <div class="container">
+            <div class="brand-logo"></div>
+            <h1>Edit Car</h1>
+            <div class="alert" *ngIf="errorMsg">
+                {{errorMsg}}
+            </div>
+
+            <label for="name">Name:</label>
+            <input type="text" required #carName="ngModel" [class.is-invalid]="carName.invalid && carName.touched"
+                id="name" name="name" placeholder="Opel" [(ngModel)]="carModels.carName">
+            <small class="errorMessage" [class.d-none]="carName.valid || carName.untouched">Car name is
+                required</small>
+
+            <label for="model">Model:</label>
+            <input type="text" required #carModel="ngModel" [class.is-invalid]="carModel.invalid && carModel.touched"
+                name="model" id="model" placeholder="Vectra" [(ngModel)]="carModels.carModel">
+                <small class="errorMessage" [class.d-none]="carModel.valid || carModel.untouched">Car model is required</small>
+
+            <label for="price">Rental Price:</label>
+            <input type="number" required #price="ngModel" [class.is-invalid]="price.invalid && price.touched" min="1" 
+                name="price" id="price" placeholder="Only number..." [(ngModel)]="carModels.price">
+                <small class="errorMessage" [class.d-none]="price.valid || price.untouched">Price must be higher than 0 </small>
+
+            <label for="transmision">Transmission:</label>
+            <input type="text" required #transmision="ngModel"
+                [class.is-invalid]="transmision.invalid && transmision.touched" id="transmision" name="transmision"
+                placeholder="Manual, automatic ..." [(ngModel)]="carModels.transmision">
+                <small class="errorMessage" [class.d-none]="transmision.valid || transmision.untouched">Transmission type is required</small>
+
+            <label for="seats">Seats:</label>
+            <input type="number" required #seets="ngModel" [class.is-invalid]="seets.invalid && seets.touched"
+                name="seats" id="seats" placeholder="Example: 5" [(ngModel)]="carModels.seets" min="1">
+                <small class="errorMessage" [class.d-none]="seets.valid || seets.untouched">Seats must be higher than 0</small>
+
+            <label for="doors">Doors:</label>
+            <input type="number" required #doors="ngModel" [class.is-invalid]="doors.invalid && doors.touched"
+                name="doors" id="doors" placeholder="Example: 5" [(ngModel)]="carModels.doors" min="1">
+                <small class="errorMessage" [class.d-none]="doors.valid || doors.untouched">Please enter number of doors</small>
+
+            <label for="images">Image URL:</label>
+            <input type="text" required #images="ngModel" [class.is-invalid]="images.invalid && images.touched"
+                name="images" id="images" placeholder="https://i.postimg.cc/d092Vygt/bmw-x3-5d-grau-2018.png"
+                [(ngModel)]="carModels.images">
+                <small class="errorMessage" [class.d-none]="images.valid || images.untouched">Please enter a valid URL for car image</small>
+
+            <input [disabled]="userForm.form.invalid"  class="btn submit" type="submit" value="Edit this car">
+
+        </div>
+    </form>
+</div>
+
+<ng-template #loadingIndicator>
+    <div class="ring">Loading
+        <span class="loader"></span>
+      </div>
+</ng-template>
+
+
+
+

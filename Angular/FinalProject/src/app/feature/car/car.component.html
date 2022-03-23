@@ -1,0 +1,45 @@
+ 
+<div class="carContainer" *ngIf="!isLoading; else loadingIndicator">
+
+    <article  class="carTemlate" *ngFor="let car of allCars">
+        <div class="carTemlate-img">
+            <img [src]="car.images" alt="ix-rental">
+            <span>{{car.price}} $/day</span>
+        </div>
+        <div class="carName">
+            <p>{{car.carName}} - {{car.carModel}}</p>
+        </div>
+        <div class="carInfo">
+            <p>it's a ultimate sports car experience</p>
+        </div>
+        <div class="carOverview">
+            <div>
+                <h6>Transmission</h6>
+                <p>{{car.transmision}}</p>
+            </div>
+            <div>
+                <h6>doors</h6>
+                <p>{{car.doors}}</p>
+            </div>
+            <div>
+                <h6>seats</h6>
+                <p>{{car.seets}}</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <button *ngIf="isLoged" class="reserve">Reserve Now</button>
+            <button *ngIf="isLoged" id="{{car.objectId}}" class="addFavorite" (click)="viewDetails($event)" >Details</button>
+            <button *ngIf="admin" class="edit"  id="{{car.objectId}}" (click)="editCar($event)">EDIT</button>
+            <button class="reserve" *ngIf="!isLoged" routerLink="/login">LogIn for more options</button>
+        </div>
+    </article>   
+</div>
+
+<ng-template #loadingIndicator>
+    <div class="ring">Loading
+        <span class="loader"></span>
+      </div>
+</ng-template>
+
+
+

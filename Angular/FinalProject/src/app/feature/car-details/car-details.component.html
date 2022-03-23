@@ -1,0 +1,72 @@
+<section class="container" *ngIf="!isLoading; else loadingIndicator">
+    <article class="carTemlate">
+        <div class="carTemlate-img">
+            <img src="{{carData.images}}" alt="ix-rental">
+            <img src="../../../assets/images/underConstruction.jpg" alt="ix-rental">
+            <img src="../../../assets/images/underConstruction.jpg" alt="ix-rental">
+            <span>300 $/day</span>
+        </div>
+        <div class="carName">
+            <p>{{carData.carName}} - {{carData.carModel}}</p>
+        </div>
+        <div class="carInfo">
+            <p>it's a ultimate sports car experience</p>
+        </div>
+        <div class="carOverview">
+            <div>
+                <h6>Transmission</h6>
+                <p>{{carData.transmision}}</p>
+            </div>
+            <div>
+                <h6>doors</h6>
+                <p>{{carData.doors}}</p>
+            </div>
+            <div>
+                <h6>seats</h6>
+                <p>{{carData.seets}}</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="reserve">Reserve Now</button>
+
+        </div>
+    </article>
+    <section class="comments">
+        <h3>Comments:</h3>
+        <article *ngFor="let comment of allComments">
+            <h3>{{comment.name}}</h3>
+            <p>{{comment.comment}}</p>
+            <footer>{{comment.data}}</footer>
+            <div>
+                <button class="addFavorite" (click)="editComment($event)">Edit</button>
+                <button class="edit" (click)="deleteComment($event)">Delete</button>
+            </div>
+        </article>
+    </section>
+    <form id="comments" #commentForm="ngForm" (ngSubmit)="onSubmit($event)">
+        <label for="">Post new comment:</label>
+        <textarea (keyup)="handleKeyUp($event)" name="comments" required pattern=".{1,}" #comments="ngModel"
+            [(ngModel)]="commentModel" cols="30" rows="10"></textarea>
+        <button type="submit" [disabled]="commentForm.form.invalid">Submit</button>
+    </form>
+
+    <div style="display: none;" id="modalComment">
+        <form   #editForm="ngForm" 
+        (ngSubmit)="onEdit($event)">
+            <label for="">Edit comment:</label>
+            <textarea (keyup)="handleKeyUp($event)" name="comments" 
+            required pattern=".{1,}" #comments="ngModel"
+                [(ngModel)]="currentComment" 
+                cols="30" rows="10">{{currentComment}}</textarea>
+            <button type="submit" [disabled]="editForm.form.invalid">Submit</button>
+        </form>
+    </div>
+
+</section>
+
+
+<ng-template #loadingIndicator>
+    <div class="ring">Loading
+        <span class="loader"></span>
+    </div>
+</ng-template>
