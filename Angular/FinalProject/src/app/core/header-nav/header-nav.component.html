@@ -13,12 +13,13 @@
     <div class="header-links">
         <ul>
             <li class="phone-number">
-                <a href="#">+359 891 111 111</a>
+                <a href="tel:+359891111111">+359 891 111 111</a>
             </li>
             <div class="header-links-icons">
-                <li class="whatsup-number"><a routerLink="#" title="+359 891 111 111"><img src="{{whatsapp}}" alt="whatsapp" class="fa-brands fa-whatsapp"></a></li>
-                <li class="viber-number"><a routerLink="#" title="+359 891 111 111"><img src="{{viberImg}}" alt="viber" class="fa-brands fa-viber"></a>
+                <li class="whatsup-number"><a href="https://wa.me/891111111" target="_blank" title="+359 891 111 111"><img src="{{whatsapp}}" alt="whatsapp" class="fa-brands fa-whatsapp"></a></li>
+                <li class="viber-number"><a href="callto:+359 891 111 111" target="_top" title="+359 891 111 111"><img src="{{viberImg}}" alt="viber" class="fa-brands fa-viber"></a>
                 </li>
+                
             </div>
             <li class="btn-profile"><a routerLink="/login">My profile</a></li>
         </ul>
@@ -27,11 +28,10 @@
         <a id="menuBtn" routerLink="/"><img src="{{bars}}" alt="menu" class="fa-solid fa-bars"></a>
     </div>
     <ul id="hidden-nav-bar" class="hidden-nav-bar">
-        <li id="reserved"><a class="header-nav-reserve" routerLink="/allcars">RESERVE</a></li>
+        <li id="reserved"><a class="header-nav-reserve" routerLink="varnacars/allcars">RESERVE</a></li>
         <li><a routerLink="/">PROMO PACKAGES</a></li>
         <li><a routerLink="/">TRANSFERS</a></li>
         <li><a routerLink="/">INFORMATION</a></li>
-        <li><a routerLink="/newcar">ADD NEW CAR</a></li>
         <li id="myprofile" class="btn-profile"><a routerLink="/login">My profile</a></li>
     </ul>
     

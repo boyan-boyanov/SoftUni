@@ -1,29 +1,60 @@
 <section id="register-page" class="content auth">
-    <form id="register" #userForm="ngForm" (ngSubmit)="onSubmit($event)" novalidate>
+    <form id="register" [formGroup]="registerFormGroup">
         <div class="container">
             <div class="brand-logo"></div>
             <h1>Register</h1>
-
+            <p *ngIf="errorMsg" class="errorMessage">{{errorMsg}}</p>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Name..." required 
-                #username="ngModel" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="loginModel.username">
-                <small class="errorMessage" [class.d-none]="username.valid || username.untouched">Username required</small>
+            <input type="text" id="username" name="username" placeholder="Name..." formControlName="username"
+                [class.is-invalid]="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid">
+            <ng-container
+                *ngIf="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid">
+                <small class="errorMessage" *ngIf="registerFormGroup.controls['username'].errors?.['required']">Username
+                    is
+                    required!</small>
+                <small class="errorMessage"
+                    *ngIf="!registerFormGroup.controls['username'].errors?.['required'] && registerFormGroup.controls['username'].errors?.['minlength']">Username
+                    must be min 3 characters!</small>
+            </ng-container>
 
             <label for="email">Email:</label>
-            <input type="email" id="emailId" name="emailId" placeholder="Sokka@gmail.com" required email
-                #email="ngModel" [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="loginModel.email">
+            <input type="email" id="emailId" name="emailId" placeholder="Sokkar@gmail.com" formControlName="email"
+                [class.is-invalid]="registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid">
+            <ng-container
+                *ngIf="registerFormGroup.controls['email'].touched && registerFormGroup.controls['email'].invalid">
+                <small class="errorMessage" *ngIf="registerFormGroup.controls['email'].errors?.['required']">Email is
+                    required!</small>
+                <small class="errorMessage"
+                    *ngIf="!registerFormGroup.controls['email'].errors?.['required'] && registerFormGroup.controls['email'].errors?.['email']">Invalid
+                    email!</small>
+            </ng-container>
 
-            <small class="errorMessage" [class.d-none]="email.valid || email.untouched">Invalid email</small>
-
-            <label for="pass">Password:</label>
-            <input type="password" id="login-password" name="password" required pattern=".{6,}" #password="ngModel" [(ngModel)]="loginModel.password">
-            <small class="errorMessage" [class.d-none]="password.valid || password.untouched">Password must be min 6 characters</small>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"
+                formControlName="password"
+                [class.is-invalid]="registerFormGroup.controls['password'].touched && registerFormGroup.controls['password'].invalid">
+            <ng-container
+                *ngIf="registerFormGroup.controls['password'].touched && registerFormGroup.controls['password'].invalid">
+                <small class="errorMessage" *ngIf="registerFormGroup.controls['password'].errors?.['required']">Password
+                    is
+                    required!</small>
+                <small class="errorMessage"
+                    *ngIf="!registerFormGroup.controls['password'].errors?.['required'] && registerFormGroup.controls['password'].errors?.['minlength']">Password
+                    must
+                    be min 6 characters!!</small>
+            </ng-container>
 
             <label for="repass">Confirm Password:</label>
-            <input type="password" name="repass" id="repass" #repass="ngModel" [(ngModel)]="loginModel.repass" >
-            
-            <input class="btn submit" type="submit" value="Register">
-            
+            <input type="password" id="repass" name="repass"  formControlName="repass" required
+                [class.is-invalid]="registerFormGroup.controls['repass'].touched && registerFormGroup.controls['repass'].invalid">
+            <ng-container
+                *ngIf="registerFormGroup.controls['repass'].touched && registerFormGroup.controls['repass'].invalid">
+                <small class="errorMessage" *ngIf="!registerFormGroup.controls['repass'].errors?.['required']">Password
+                    not match!!</small>
+            </ng-container>
+
+            <input [disabled]="registerFormGroup.invalid" class="btn submit" type="submit" value="Register" (click)="onSubmit()" >
+
             <p class="field">
                 <span>If you already have profile click <a routerLink="/login">here</a></span>
             </p>

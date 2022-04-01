@@ -1,3 +1,9 @@
+ <div class="searchContainer">
+     <form class="searchCar">
+         <input id="search" type="text" placeholder="search for your dream car...">
+         <button (click)="findCar()">SEARCH</button>
+     </form>
+ </div>
  
 <div class="carContainer" *ngIf="!isLoading; else loadingIndicator">
 
@@ -26,10 +32,10 @@
                 <p>{{car.seets}}</p>
             </div>
         </div>
-        <div class="buttons">
-            <button *ngIf="isLoged" class="reserve">Reserve Now</button>
-            <button *ngIf="isLoged" id="{{car.objectId}}" class="addFavorite" (click)="viewDetails($event)" >Details</button>
-            <button *ngIf="admin" class="edit"  id="{{car.objectId}}" (click)="editCar($event)">EDIT</button>
+        <div class="buttons" id="{{car.objectId}}">
+            <button *ngIf="isLoged"  class="reserve" (click)="reserveCar($event)">Reserve Now</button>
+            <button *ngIf="isLoged"  class="addFavorite" (click)="viewDetails($event)" >Details</button>
+            <button *ngIf="admin" class="edit"   (click)="editCar($event)">EDIT</button>
             <button class="reserve" *ngIf="!isLoged" routerLink="/login">LogIn for more options</button>
         </div>
     </article>   

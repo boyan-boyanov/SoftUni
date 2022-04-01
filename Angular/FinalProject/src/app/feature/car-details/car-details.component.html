@@ -38,8 +38,10 @@
             <p>{{comment.comment}}</p>
             <footer>{{comment.data}}</footer>
             <div>
-                <button class="addFavorite" (click)="editComment($event)">Edit</button>
-                <button class="edit" (click)="deleteComment($event)">Delete</button>
+                <button *ngIf="comment.userId===userData.objectId" class="addFavorite"
+                    (click)="editComment($event)">Edit</button>
+                <button *ngIf="comment.userId===userData.objectId" class="edit"
+                    (click)="deleteComment($event)">Delete</button>
             </div>
         </article>
     </section>
@@ -51,13 +53,10 @@
     </form>
 
     <div style="display: none;" id="modalComment">
-        <form   #editForm="ngForm" 
-        (ngSubmit)="onEdit($event)">
+        <form #editForm="ngForm" (ngSubmit)="onEdit($event)">
             <label for="">Edit comment:</label>
-            <textarea (keyup)="handleKeyUp($event)" name="comments" 
-            required pattern=".{1,}" #comments="ngModel"
-                [(ngModel)]="currentComment" 
-                cols="30" rows="10">{{currentComment}}</textarea>
+            <textarea (keyup)="handleKeyUp($event)" name="comments" required pattern=".{1,}" #comments="ngModel"
+                [(ngModel)]="currentComment" cols="30" rows="10">{{currentComment}}</textarea>
             <button type="submit" [disabled]="editForm.form.invalid">Submit</button>
         </form>
     </div>

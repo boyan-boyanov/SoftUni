@@ -126,6 +126,14 @@ label[for="terms"]>input {
 }
 
 .is-invalid {
-    border: 1px solid red;
+    border: 2px solid red;
     
 }
+
+.submit:disabled {
+    background-color: red;
+    }
+
+    .submit:disabled:hover {
+        background-color: rgb(136, 1, 1);
+        }

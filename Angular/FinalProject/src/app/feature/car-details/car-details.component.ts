@@ -18,6 +18,7 @@ export class CarDetailsComponent implements OnInit {
   currentComment: string = "";
   newComment: string = ""
   currentCommentIndex!: number;
+  userData: any = {};
   constructor(private route: ActivatedRoute,
     private getSingleCarServices: SingleCarService,
     private addComentServices: AddCommentService) {
@@ -31,21 +32,26 @@ export class CarDetailsComponent implements OnInit {
       this.carData = this.colectSingleCar
       this.allComments = this.carData.comments
       this.isLoading = false;
+      console.log(this.allComments);
+      
     })
-
+    this.userData = JSON.parse(localStorage.getItem("userData")!)
+    console.log(this.userData);
+    
   }
 
   onSubmit(event: any) {
     let commentsArray = this.carData.comments
-    let userData = JSON.parse(localStorage.getItem("userData")!)
     let currentDate = new Date()
     const date = ("Date: " + currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear() + "-" + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds());
 
+
     let newComment = {
-      email: userData.email,
+      email: this.userData.email,
       data: date,
       comment: this.commentModel,
-      name: userData.username
+      name: this.userData.username,
+      userId: this.userData.objectId
     }
     commentsArray.push(newComment)
     this.allComments = commentsArray
@@ -64,7 +70,7 @@ export class CarDetailsComponent implements OnInit {
   }
 
   editComment(event: any) {
-    const comentInfo = event.target.parentElement.parentElement
+    const comentInfo = event.target.parentElement.parentElement     
     const userName = comentInfo.children[0].textContent
     const oldComment = comentInfo.children[1].textContent
     const oldDate = comentInfo.children[2].textContent
@@ -72,7 +78,9 @@ export class CarDetailsComponent implements OnInit {
     this.currentCommentIndex = this.allComments.findIndex((object: { data: any; }) => {
       return object.data === oldDate;
     });
+    
     this.currentComment = oldComment
+    
 
 
     let modalForm = document.getElementById("modalComment")
@@ -91,7 +99,8 @@ export class CarDetailsComponent implements OnInit {
       email: userData.email,
       data: date,
       comment: this.currentComment,
-      name: userData.username
+      name: userData.username,
+      userId: this.userData.objectId
     }
     this.allComments[this.currentCommentIndex] = editComment
 
@@ -103,20 +112,20 @@ export class CarDetailsComponent implements OnInit {
     this.commentModel = ""
   }
 
-  deleteComment(event: any){
+  deleteComment(event: any) {
     console.log('delete');
     const comentInfo = event.target.parentElement.parentElement
     const oldDate = comentInfo.children[2].textContent
     this.currentCommentIndex = this.allComments.findIndex((object: { data: any; }) => {
       return object.data === oldDate;
     });
-        this.allComments.splice(this.currentCommentIndex, 1)
-        let commentsData = {
-          "comments": this.allComments
-        }
-        this.addComentServices.addNewComment(this.carId, commentsData)
-          .subscribe()
-        
+    this.allComments.splice(this.currentCommentIndex, 1)
+    let commentsData = {
+      "comments": this.allComments
+    }
+    this.addComentServices.addNewComment(this.carId, commentsData)
+      .subscribe()
+
   }
 }
 

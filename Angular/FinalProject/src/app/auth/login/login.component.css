@@ -128,3 +128,15 @@ label[for="terms"]>input {
     border: 1px solid red;
     
 }
+
+.submit:disabled {
+background-color: red;
+}
+
+.submit:disabled:hover {
+    background-color: rgb(136, 1, 1);
+    }
+
+.input-error{
+    border: 2px solid red;
+}

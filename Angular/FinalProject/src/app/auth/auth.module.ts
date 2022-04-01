@@ -26,6 +26,6 @@ import { CurrentUserComponent } from './current-user/current-user.component';
         LoginComponent,
         RegisterComponent
       ],
-      providers: [RegistersService, RegistersService],
+      providers: [RegistersService, RegistersService, CurrentUserComponent],
 })
 export class AuthModule { }

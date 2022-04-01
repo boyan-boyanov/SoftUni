@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IloginUser } from '../authInterfaces/loginInterfaces';
 import { Router } from '@angular/router';
 import { RegistersService } from '../registers.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { emailValidator } from '../util';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,18 @@ import { RegistersService } from '../registers.service';
 })
 export class LoginComponent implements OnInit {
   user: Boolean = false;
-  loginModel = new IloginUser("", "")
   errorMsg = "";
-  constructor(private registerServices: RegistersService,
-    private router: Router,) { }
+
+  loginFormGroup: FormGroup = this.formBuilder.group({
+    "email": new FormControl('', [Validators.required, emailValidator]),
+    "password": new FormControl(null, [Validators.required, Validators.minLength(6)])
+
+  })
+
+  constructor(
+    private registerServices: RegistersService,
+    private router: Router,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     if (localStorage.getItem('userData') != null) {
@@ -29,21 +38,29 @@ export class LoginComponent implements OnInit {
 
   }
   onSubmit() {
-    console.log(this.loginModel);
-    let params = `?email=${this.loginModel.email}&password=${this.loginModel.password}`
-    
-    this.registerServices.login(params)
-      .subscribe(data => {
+    this.errorMsg = ""
+    const { email, password } = this.loginFormGroup.value
+
+    const body: { [key: string]: string } = {
+      email: email,
+      password: password,
+    }
+
+    let params = `?email=${body['email']}&password=${body['password']}`
+
+    this.registerServices.login(params).subscribe({
+      next: data => {
         localStorage.setItem('userData', JSON.stringify(data));
-        if (localStorage.getItem("userData")) {
-          this.router.navigate(['/'])
-        }
       },
-        error => {
-          console.log(error);
-        }
-      )
+      complete: () => {
+        this.router.navigate(['/'])
+      },
+      error: (err) => {
+        this.errorMsg = err.error.error
+      }
+    })
 
   }
 
 }
+

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { IaddCar } from '../interfaces/addCar';
-import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 const BASE_URL = 'https://parseapi.back4app.com/classes/allCars'

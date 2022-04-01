@@ -1,41 +1,63 @@
-import { Component } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, HostBinding } from '@angular/core';
+// import { trigger, style, animate, transition, keyframes, query, stagger } from '@angular/animations';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+ /* animations: [
+
+    trigger('listAnimation', [
+      transition('*=>*', [
+        query(':enter', style({ opacity: 0 }), { optional: true }),
+        query('enter', stagger('1300ms', [
+          animate('3s ease-in', keyframes([
+            style({ opacity: 0, transform: 'translateY(-75px)', offset: 0 }),
+            style({ opacity: .5, transform: 'translateY(35px)', offset: 0.3 }),
+            style({ opacity: 1, transform: 'translateY(0)', offset: 1 }),
+          ]))
+        ]), {optional:true}),
+        query('leave', stagger('1300ms', [
+          animate('3s ease-in', keyframes([
+            style({ opacity: 1, transform: 'translateY(0px)', offset: 0 }),
+            style({ opacity: .5, transform: 'translateY(35px)', offset: 0.3 }),
+            style({ opacity: 0, transform: 'translateY(-75px)', offset: 1 }),
+          ]))
+        ]), {optional:true})
+      ])
+    ]),
+
+    trigger('explainerAnim', [
+      transition('*=>*', [
+        query(':enter', style({opacity: 0, transform: 'translateX(-40px)'}), {optional:true}),
+        query('.col', stagger('500ms', [
+          animate('800ms 1.2s ease-out', style({opacity: 1, transform: 'translateX(0)'}))
+        ]), {optional:true})
+      ])
+    ])
+
+    
+  ]*/
 })
 export class AppComponent {
   title = 'FinalProject';
   selectedFile!: File;
- 
+ // items = []
 
-  constructor(private http: HttpClient) { }
+  constructor() {
+    //this.items = ['first item', 'second item', 'third item']
+  }
 
   onChangeEvent(event: any) {
     this.selectedFile = event.target.files[0]
-    console.log(this.selectedFile);
-
   }
 
-  onSubmitEvent() {
-    const headers = {
-      'Content-Type': 'application/json',
-      'X-Parse-Application-Id': '4hPPyxt4b0tlUbJAUzz4SdtJ4vqBXpPsdadPF9jr',
-      'X-Parse-REST-API-Key': 'JoUCGU1crWNA2LptiPFx1WHOPlkGpE9C55TbK29w',
-      };
-   const body = {
-      carName: "test2",
-      carModel: "Viper",
-      images: "https://elitetraveler.com/wp-content/uploads/2019/07/Screenshot-2020-05-12-at-15.10.34.png",
-    };
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name)
-    this.http.post('https://parseapi.back4app.com/classes/allCars', body, { headers })
-      .subscribe(res => {
-        console.log(res);
-
-      })
-
+/*  pushItem() {
+    this.items.push('This is new item')
   }
+
+  removeItem() {
+    this.items.pop();
+  }*/
+
 }
