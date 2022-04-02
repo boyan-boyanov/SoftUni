@@ -27,8 +27,7 @@
             </div>
         </div>
         <div class="buttons">
-            <button class="reserve">Reserve Now</button>
-
+            <button class="reserve" *ngIf="!admin" (click)="reserveCar($event)">Reserve Now</button>
         </div>
     </article>
     <section class="comments">

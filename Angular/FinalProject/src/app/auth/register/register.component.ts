@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IRegisterUser } from '../authInterfaces/loginInterfaces';
 import { RegistersService } from '../registers.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -54,10 +53,41 @@ export class RegisterComponent implements OnInit {
       error: (err) => {
         this.errorMsg = err.error.error
 
-
-
       }
     })
   }
 
 }
+
+/*
+[
+  {
+    "objectId": "Dx3wA3VgeC",
+    "carName": "Cadillac",
+    "carModel": "Escalade",
+    "createdAt": "2022-03-13T12:07:15.824Z",
+    "updatedAt": "2022-04-02T17:51:58.884Z",
+    "transmision": "automatic",
+    "images": "https://i.postimg.cc/Dzfgs6rb/cadillac-escalade-5d-schwarz-2018.png",
+    "doors": 4,
+    "seets": 5,
+    "price": 240000,
+    "comments": [
+      {
+        "email": "nikola@abv.bg",
+        "data": "Date: 28/2/2022-22:9:49",
+        "comment": "This car is very good",
+        "name": "nikola",
+        "userId": "FE1dVGjDq5"
+      },
+      {
+        "email": "admin@admin.com",
+        "data": "Date: 2/3/2022-20:51:57",
+        "comment": "test",
+        "name": "Admin",
+        "userId": "JaLOs6NPtK"
+      }
+    ]
+  }
+]
+*/

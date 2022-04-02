@@ -17,7 +17,7 @@
         </p>
         <p class="infoUser">Total cost per day: {{totalCosts}} $</p>
         <ul>
-            <li><a href="">Show history</a></li>
+            <li><a (click)="getHistory()">Show history</a></li>
             <li><a routerLink="/" (click)="logout()">Logout</a></li>
         </ul>
     </div>
@@ -27,7 +27,7 @@
             <h3>{{car.carName}} {{car.carModel}}</h3>
             <img src="{{car.images}}" alt="">
             <p class="carPrice">{{car.price}}$/day</p>
-            <button>remove</button>
+            <button id="{{car.objectId}}" (click)="removeCar($event)">remove</button>
         </article>
     </div>
 </div>

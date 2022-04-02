@@ -16,7 +16,9 @@ import { FeatureModule } from './feature/feature.module';
 import { AddCommentService } from './services/add-comment.service';
 import { ReserveCarService } from './services/reserve-car.service';
 import { UserDataService } from './services/user-data.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { IsAdminService } from './services/is-admin.service';
+import { HistoryService } from './services/history.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     EditCarService,
     AddCommentService,
     ReserveCarService,
-    UserDataService
+    UserDataService,
+    IsAdminService,
+    HistoryService
   ],
   bootstrap: [AppComponent]
 })

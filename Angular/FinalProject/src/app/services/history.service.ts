@@ -14,17 +14,17 @@ const headers = {
 @Injectable({
   providedIn: 'root'
 })
-export class ReserveCarService {
+export class HistoryService {
 
   constructor(private http: HttpClient) {
   }
 
 
-  putReservedCars(id: string, reservedCars: {}): Observable<Array<{}>> {
+  sendHistoryCars(id: string, history: {}): Observable<Array<{}>> {
     let userData = JSON.parse(localStorage.getItem("userData")!)
 
     headers['X-Parse-Session-Token'] = userData.sessionToken
-    return this.http.put<Array<{}>>(BASE_URL + `/${id}`, reservedCars, { headers })
+    return this.http.put<Array<{}>>(BASE_URL + `/${id}`, history, { headers })
   }
 
 

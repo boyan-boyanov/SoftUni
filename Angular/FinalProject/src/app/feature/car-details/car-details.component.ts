@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddCommentService } from 'src/app/services/add-comment.service';
+import { IsAdminService } from 'src/app/services/is-admin.service';
+import { ReserveCarService } from 'src/app/services/reserve-car.service';
 import { SingleCarService } from 'src/app/services/single-car.service';
 
 @Component({
@@ -19,9 +21,14 @@ export class CarDetailsComponent implements OnInit {
   newComment: string = ""
   currentCommentIndex!: number;
   userData: any = {};
+  admin = false;
   constructor(private route: ActivatedRoute,
     private getSingleCarServices: SingleCarService,
-    private addComentServices: AddCommentService) {
+    private addComentServices: AddCommentService,
+    private getAdminDataServices: IsAdminService,
+    private reservedCarServices: ReserveCarService,
+    private router: Router,
+  ) {
     this.carId = this.route.snapshot.params['id'];
   }
 
@@ -31,13 +38,15 @@ export class CarDetailsComponent implements OnInit {
       this.colectSingleCar = data;
       this.carData = this.colectSingleCar
       this.allComments = this.carData.comments
+      this.admin = this.getAdminDataServices.isAdmin()
       this.isLoading = false;
-      console.log(this.allComments);
-      
+      // console.log(this.allComments);
+
     })
     this.userData = JSON.parse(localStorage.getItem("userData")!)
-    console.log(this.userData);
-    
+    //console.log(this.userData);
+
+
   }
 
   onSubmit(event: any) {
@@ -70,7 +79,7 @@ export class CarDetailsComponent implements OnInit {
   }
 
   editComment(event: any) {
-    const comentInfo = event.target.parentElement.parentElement     
+    const comentInfo = event.target.parentElement.parentElement
     const userName = comentInfo.children[0].textContent
     const oldComment = comentInfo.children[1].textContent
     const oldDate = comentInfo.children[2].textContent
@@ -78,9 +87,9 @@ export class CarDetailsComponent implements OnInit {
     this.currentCommentIndex = this.allComments.findIndex((object: { data: any; }) => {
       return object.data === oldDate;
     });
-    
+
     this.currentComment = oldComment
-    
+
 
 
     let modalForm = document.getElementById("modalComment")
@@ -113,7 +122,7 @@ export class CarDetailsComponent implements OnInit {
   }
 
   deleteComment(event: any) {
-    console.log('delete');
+    //console.log('delete');
     const comentInfo = event.target.parentElement.parentElement
     const oldDate = comentInfo.children[2].textContent
     this.currentCommentIndex = this.allComments.findIndex((object: { data: any; }) => {
@@ -126,6 +135,19 @@ export class CarDetailsComponent implements OnInit {
     this.addComentServices.addNewComment(this.carId, commentsData)
       .subscribe()
 
+  }
+
+  reserveCar(event) {
+    console.log(this.userData);
+    this.userData.reservedCars.push(this.carId)
+    console.log(this.userData);
+    let reservedCarData = {
+      "reservedCars": this.userData.reservedCars
+    }
+    this.reservedCarServices.putReservedCars(this.userData.objectId, reservedCarData)
+      .subscribe(data => {
+        this.router.navigate(['/user'])
+      })
   }
 }
 

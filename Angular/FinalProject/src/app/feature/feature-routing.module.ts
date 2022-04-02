@@ -10,7 +10,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', component: WelcomeComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'varnacars'},
   { path: 'varnacars', component: WelcomeComponent },
   {path: 'varnacars/newcar', component: AddNewCarComponent, canActivate: [AdminGuard]},
   { path: 'varnacars/allcars', component: CarComponent },

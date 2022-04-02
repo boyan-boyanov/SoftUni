@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { IloginUser, IRegisterUser } from './authInterfaces/loginInterfaces';
-
+import { HttpClient } from '@angular/common/http';
+import { IRegisterUser } from './authInterfaces/loginInterfaces';
 
 const BASE_URL = 'https://parseapi.back4app.com'
 const headers = {
@@ -21,13 +18,13 @@ export class RegistersService {
   constructor(private http: HttpClient) { }
 
   register(userData: IRegisterUser) {
-    return this.http.post<any>(BASE_URL+"/users", userData, { headers })
-              
+    return this.http.post<any>(BASE_URL + "/users", userData, { headers })
+
   }
 
-  login(params: any){
-    return this.http.get<any>(BASE_URL+"/login"+params, { headers })
+  login(params: any) {
+    return this.http.get<any>(BASE_URL + "/login" + params, { headers })
   }
-  
-  
+
+
 }

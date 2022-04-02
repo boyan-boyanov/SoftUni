@@ -4,6 +4,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { CurrentUserComponent } from 'src/app/auth/current-user/current-user.component';
 import { ReserveCarService } from 'src/app/services/reserve-car.service';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { IsAdminService } from 'src/app/services/is-admin.service';
 
 @Component({
   selector: 'app-car',
@@ -17,20 +18,24 @@ export class CarComponent implements OnInit {
   admin: Boolean = false;
   isLoged: Boolean = false;
   reservedArray: any = []
+
+  
   constructor(private getAllCarsServices: AllCarsService,
     private router: Router,
     private test: CurrentUserComponent,
     private reservedCarServices: ReserveCarService,
-    private getUserDataServices: UserDataService) { }
+    private getUserDataServices: UserDataService,
+    private getAdminDataServices: IsAdminService) { }
 
 
   ngOnInit(): void {
     if (localStorage.getItem('userData') != null) {
       this.isLoged = true
       let curentUser = JSON.parse(localStorage.getItem('userData')!)
-      if (curentUser.objectId == 'JaLOs6NPtK') {
+    /*  if (curentUser.objectId == 'JaLOs6NPtK') {
         this.admin = true
-      }
+      }*/
+      this.admin = this.getAdminDataServices.isAdmin()
 
     }
     this.isLoading = true;
@@ -73,7 +78,8 @@ export class CarComponent implements OnInit {
           let reservedCarData = {
             "reservedCars": this.reservedArray
           }
-          this.reservedCarServices.reservedCars(curentUser.objectId, reservedCarData)
+              
+          this.reservedCarServices.putReservedCars(curentUser.objectId, reservedCarData)
             .subscribe(data => {
               this.router.navigate(['/user'])
             })
@@ -83,18 +89,19 @@ export class CarComponent implements OnInit {
   }
 
   findCar() {
+    
     let key = document.getElementById('search')['value']
-
-    let myCars = this.collectCars.results.filter(car => car.carName.toLowerCase() == key.toLowerCase())
-    if (myCars.length == 0) {
-      let myCars = this.collectCars.results.filter(car => car.carModel.toLowerCase() == key.toLowerCase())
-      this.allCars = myCars
-      
+    if (key.trim() == "") {
+      console.log('empty');
+      this.allCars = this.collectCars.results
       return
     }
-
+    let myCars = this.collectCars.results.filter(car => car.carName.toLowerCase() == key.toLowerCase())
+    key = ""
     this.allCars = myCars
-
   }
-
+  allItems(){
+    this.allCars = this.collectCars.results
+    return
+  }
 }
