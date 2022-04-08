@@ -1,0 +1,46 @@
+<div class="container" *ngIf="!isLoading; else loadingIndicator">
+    <div class="headerContainer">
+        <p class="infoUser">Welcome, here you can find some usefull data for your orders.
+        </p>
+        <ul>
+            <li><a routerLink="/user">Show reserved cars</a></li>
+            <li><a routerLink="/">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="reservedContainer">
+        <div class="reserved" *ngFor="let car of history">
+            <article class="reserved-car">
+                <h3>{{car.carName}} {{car.carModel}} </h3>
+                <img src="{{car.images}}" alt="">
+                <p class="carPrice">{{car.price}}$/day</p>
+                <p class="carPrice" id="reserved">{{getReservedDate(car)}}</p>
+                <p class="carPrice" id="returned">{{returnDate(car)}}</p>
+            </article>
+        </div>
+    </div>
+    <div class="table">
+        <table>
+            <tr class="trHeaders">
+                <th>Used Cars</th>
+                <th>Days</th>
+                <th>Price</th>
+            </tr>
+            <tr *ngFor="let car of history">
+                <td>{{car.carName}} {{car.carModel}}$</td>
+                <td>{{calcDays(car)}}</td>
+                <td class="rentPrice">{{calcPrice(car)}}$</td>
+            </tr>
+            <tr class="total">
+                <td colspan="2">TOTAL SPEND:</td>
+                <td>{{totalSpend}}$</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<ng-template #loadingIndicator>
+    <div class="ring">Loading
+        <span class="loader"></span>
+    </div>
+</ng-template>

@@ -1,0 +1,48 @@
+#animeContainer {
+    padding: 2rem;
+}
+
+#list {
+    padding: 1rem;
+    display: block;
+    background: FFF;
+    margin-bottom: 10px;
+}
+
+button {
+    border: none;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    padding: 10px;
+    background: #EA5B1B;
+    color: black;
+    text-transform: uppercase;
+    border-radius: 10px;
+}
+
+button:hover{
+    background-color: black;
+    color: #EA5B1B;
+    transition: 300ms ease-in-out;
+}
+
+.col {
+   
+    flex-basis: 25%;
+    color: gray;
+}
+
+.row {
+    margin: 0 100px;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+   
+}
+
+#wrap {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0 100px;
+}

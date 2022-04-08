@@ -5,6 +5,8 @@ import { CurrentUserComponent } from 'src/app/auth/current-user/current-user.com
 import { ReserveCarService } from 'src/app/services/reserve-car.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { IsAdminService } from 'src/app/services/is-admin.service';
+import { EditCarService } from 'src/app/services/edit-car.service';
+import { UsedCarService } from 'src/app/services/used-car.service';
 
 @Component({
   selector: 'app-car',
@@ -18,33 +20,39 @@ export class CarComponent implements OnInit {
   admin: Boolean = false;
   isLoged: Boolean = false;
   reservedArray: any = []
+  usedCars: Array<string> = []
 
-  
+
   constructor(private getAllCarsServices: AllCarsService,
     private router: Router,
-    private test: CurrentUserComponent,
     private reservedCarServices: ReserveCarService,
     private getUserDataServices: UserDataService,
-    private getAdminDataServices: IsAdminService) { }
+    private getAdminDataServices: IsAdminService,
+    private deleteCarServices: EditCarService,
+    private usedCarSercices: UsedCarService) { }
 
 
   ngOnInit(): void {
     if (localStorage.getItem('userData') != null) {
       this.isLoged = true
-      let curentUser = JSON.parse(localStorage.getItem('userData')!)
-    /*  if (curentUser.objectId == 'JaLOs6NPtK') {
-        this.admin = true
-      }*/
       this.admin = this.getAdminDataServices.isAdmin()
-
     }
+    this.onInit()
+  }
+
+  onInit() {
     this.isLoading = true;
+    this.usedCarSercices.getUsedCar().subscribe(data => {
+      for (let usedCar of data.results) {
+        this.usedCars.push(usedCar.rentedCar)
+      }
+    })
     this.getAllCarsServices.getAllCars().subscribe(data => {
       this.collectCars = data;
       this.allCars = this.collectCars.results
       this.isLoading = false;
     });
-
+    
   }
 
   editCar(event: any) {
@@ -54,14 +62,18 @@ export class CarComponent implements OnInit {
         id: carId,
       }
     };
-
     this.router.navigate(['/varnacars/allcars/editcar'], navigationExtras);
   }
 
-  viewDetails(event: any) {
-
+  deleteCar(event) {
     const carId = event.target.parentElement.id
-    this.router.navigate(['/varnacars/allcars/' + carId])
+    this.deleteCarServices.deleteCars(carId).subscribe()
+    this.onInit()
+  }
+
+  viewDetails(event: any) {
+    const carId = event.target.parentElement.id
+    this.router.navigate(['/varnacars/allcars/' + carId, {used: this.usedCars}])
   }
 
   public reserveCar(event: any) {
@@ -69,16 +81,23 @@ export class CarComponent implements OnInit {
 
       let curentUser = JSON.parse(localStorage.getItem('userData')!)
       // console.log(curentUser.reservedCars);
+      let reservedDate = new Date()
 
       this.getUserDataServices.getUserData(curentUser.objectId)
         .subscribe(data => {
           this.reservedArray = data.reservedCars;
           const carId = event.target.parentElement.id;
-          this.reservedArray.push(carId);
+          const reservedData = {
+            carId: carId,
+            reservedDate: reservedDate,
+            reservedTime: reservedDate.getTime()
+          }
+          this.reservedArray.push(reservedData);
+
           let reservedCarData = {
             "reservedCars": this.reservedArray
           }
-              
+          this.usedCarSercices.saveUsedCar({ "rentedCar": carId }).subscribe()
           this.reservedCarServices.putReservedCars(curentUser.objectId, reservedCarData)
             .subscribe(data => {
               this.router.navigate(['/user'])
@@ -89,7 +108,7 @@ export class CarComponent implements OnInit {
   }
 
   findCar() {
-    
+
     let key = document.getElementById('search')['value']
     if (key.trim() == "") {
       console.log('empty');
@@ -100,7 +119,7 @@ export class CarComponent implements OnInit {
     key = ""
     this.allCars = myCars
   }
-  allItems(){
+  allItems() {
     this.allCars = this.collectCars.results
     return
   }

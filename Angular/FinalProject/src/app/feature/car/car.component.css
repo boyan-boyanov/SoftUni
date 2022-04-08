@@ -41,7 +41,13 @@
   transition: 300ms ease-in-out;
 }
 
-
+.errorFindCar{
+  text-align: center;
+  color: rgb(193, 142, 58);
+  font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+}
 
 
 .carContainer {
@@ -83,6 +89,19 @@ img {
     padding: 0px 10px;
     font-size: 1.2rem;
 }
+
+.carIsReservedTrue{
+  position: absolute;
+  color: red;
+  transform: rotate(-45deg);
+  font-size: 30px;
+  top: 50px;
+  left: 50px;
+  display: block;
+ }
+ .carIsReservedFalse{
+   display:none
+ }
 
 .carName {
     position: relative;
@@ -156,6 +175,10 @@ img {
     color: #FFFFFF;
 }
 
+.reserve:disabled{
+  background-color: grey;
+}
+
 .addFavorite {
     border: none;
     padding: 10px;
@@ -168,10 +191,22 @@ img {
     border: none;
     padding: 10px;
     border-radius: 5px;
-    background-color: red;
+    background-color: rgb(193, 142, 58);
     color: #FFFFFF;
 }
 
+.delete {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: red;
+  color: #FFFFFF;
+}
+
+.edit:hover, .delete:hover, .addFavorite:hover {
+  background-color: #25D366;
+  transition: 300ms ease-in-out;
+}
 
 
 .ring

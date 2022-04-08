@@ -12,10 +12,10 @@
 </div>
 <div *ngIf="!isLoading; else loadingIndicator">
     <div *ngIf="!admin">
-        <p class="infoUser">Welcome back {{activeUser.username | titlecase}}, now you have {{totalCars}} reserved
+        <p class="infoUser">Welcome back {{activeUser.username | titlecase}}, now you {{!totalCars? "don't": ''}} have {{totalCars}} reserved
             cars.
         </p>
-        <p class="infoUser">Total cost per day: {{totalCosts}} $</p>
+        <p class="infoUser" *ngIf="totalCars">Total cost per day: {{totalCosts}} $</p>
         <ul>
             <li><a (click)="getHistory()">Show history</a></li>
             <li><a routerLink="/" (click)="logout()">Logout</a></li>
@@ -27,7 +27,8 @@
             <h3>{{car.carName}} {{car.carModel}}</h3>
             <img src="{{car.images}}" alt="">
             <p class="carPrice">{{car.price}}$/day</p>
-            <button id="{{car.objectId}}" (click)="removeCar($event)">remove</button>
+            <button id="{{car.objectId}}" (click)="removeCar($event)">return a car</button>
+            <p class="carPrice">{{getDate(car)}}</p>
         </article>
     </div>
 </div>

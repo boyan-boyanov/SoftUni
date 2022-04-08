@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { CarComponent } from './car/car.component';
 import { EditCarComponent } from './edit-car/edit-car.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
+import { HistoryComponent } from './history/history.component';
+import { PromoPacksComponent } from './promo-packs/promo-packs.component';
+import { DiscountTemplateComponent } from './discount-template/discount-template.component';
+import { DiscountFullComponent } from './discount-full/discount-full.component';
 
 
 
@@ -19,7 +23,11 @@ import { CarDetailsComponent } from './car-details/car-details.component';
     AddNewCarComponent,
     CarComponent,
     EditCarComponent,
-    CarDetailsComponent],
+    CarDetailsComponent,
+    HistoryComponent,
+    PromoPacksComponent,
+    DiscountTemplateComponent,
+    DiscountFullComponent],
   imports: [
     CommonModule,
     FeatureRoutingModule,

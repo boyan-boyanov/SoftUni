@@ -19,6 +19,7 @@ import { UserDataService } from './services/user-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { IsAdminService } from './services/is-admin.service';
 import { HistoryService } from './services/history.service';
+import { UsedCarService } from './services/used-car.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HistoryService } from './services/history.service';
     ReserveCarService,
     UserDataService,
     IsAdminService,
-    HistoryService
+    HistoryService,
+    UsedCarService
   ],
   bootstrap: [AppComponent]
 })

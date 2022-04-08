@@ -7,13 +7,14 @@
  </div>
  
 <div class="carContainer" *ngIf="!isLoading; else loadingIndicator">
-
+<p *ngIf="!allCars.length" class="errorFindCar">Sorry, we couldn't find a car with that name or model!</p>
     <article  class="carTemlate" *ngFor="let car of allCars">
         <div class="carTemlate-img">
             <img [src]="car.images" alt="ix-rental">
             <span>{{car.price}} $/day</span>
+            <div [ngClass]="usedCars.includes(car.objectId) ? 'carIsReservedTrue' : 'carIsReservedFalse'">RESERVED</div>
         </div>
-        <div class="carName">
+        <div  class="carName">
             <p>{{car.carName}} - {{car.carModel}}</p>
         </div>
         <div class="carInfo">
@@ -34,9 +35,10 @@
             </div>
         </div>
         <div class="buttons" id="{{car.objectId}}">
-            <button *ngIf="isLoged && !admin"  class="reserve" (click)="reserveCar($event)">Reserve Now</button>
+            <button [disabled]="usedCars.includes(car.objectId)" *ngIf="isLoged && !admin"  class="reserve" (click)="reserveCar($event)">Reserve Now</button>
             <button *ngIf="isLoged"  class="addFavorite" (click)="viewDetails($event)" >Details</button>
             <button *ngIf="admin" class="edit"   (click)="editCar($event)">EDIT</button>
+            <button *ngIf="admin" class="delete"   (click)="deleteCar($event)">DELETE</button>
             <button class="reserve" *ngIf="!isLoged" routerLink="/login">LogIn for more options</button>
         </div>
     </article>   

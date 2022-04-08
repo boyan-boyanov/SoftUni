@@ -115,6 +115,11 @@ img {
     color: #FFFFFF;
 }
 
+.reserve:disabled{
+    background-color: rgb(172, 168, 168);
+    color: rgb(181, 6, 6);
+  }
+
 .addFavorite {
     border: none;
     padding: 10px;

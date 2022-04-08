@@ -21,10 +21,16 @@ export class EditCarService {
   editCars(carModels: IaddCar, carId: any) {
     return this.http.put<any>(BASE_URL + "/" + carId, carModels, { headers })
       .pipe(catchError(this.errorHandler))
+  }
+ 
 
+  deleteCars( carId: any) {
+    return this.http.delete<any>(BASE_URL + "/" + carId, { headers })
+      .pipe(catchError(this.errorHandler))
   }
 
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);
   }
+  
 }

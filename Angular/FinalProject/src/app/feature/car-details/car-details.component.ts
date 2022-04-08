@@ -22,6 +22,8 @@ export class CarDetailsComponent implements OnInit {
   currentCommentIndex!: number;
   userData: any = {};
   admin = false;
+  usedCars: any = []
+
   constructor(private route: ActivatedRoute,
     private getSingleCarServices: SingleCarService,
     private addComentServices: AddCommentService,
@@ -33,6 +35,11 @@ export class CarDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.usedCars = this.route.snapshot.params['used']
+    this.usedCars = this.usedCars.split(',')
+    
+
+
     this.isLoading = true;
     this.getSingleCarServices.getSingleCar(this.carId).subscribe((data) => {
       this.colectSingleCar = data;
@@ -41,6 +48,8 @@ export class CarDetailsComponent implements OnInit {
       this.admin = this.getAdminDataServices.isAdmin()
       this.isLoading = false;
       // console.log(this.allComments);
+
+
 
     })
     this.userData = JSON.parse(localStorage.getItem("userData")!)

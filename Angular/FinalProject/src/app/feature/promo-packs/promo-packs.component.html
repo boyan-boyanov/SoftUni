@@ -1,0 +1,30 @@
+<div id="animeContainer" [@listAnimation]="items.length">
+    <button *ngIf="items.length===1" (click)="pushItem()">More promotions</button>
+    <button *ngIf="items.length===2" (click)="removeItem()">Hide promotions</button>
+    <div id="wrap">
+        <div id="list" *ngFor="let item of items">
+
+            <app-discount-template *ngIf="item==='first'"></app-discount-template>
+            <app-discount-full *ngIf="item==='max'"></app-discount-full>
+
+        </div>
+    </div>
+    <div class="row" @explainerAnim>
+        <div class="col">
+            <h3>Save Even More</h3>
+            <p>51% Of Our Customers have saved more than 53% on their recent car rental with us. #1 Online Car Rental
+                Booking Site. Our market experience guarantees value for money deals.</p>
+        </div>
+        <div class="col">
+            <h3>Price Promise</h3>
+            <p>We are committed every day in finding the best possible deal for your car rental. Without Any Hidden
+                Charges. We offer free booking modifications and Rates as low as possible with an average saving per
+                booking of 35%!</p>
+        </div>
+        <div class="col">
+            <h3>Quality & Expertise</h3>
+            <p>Top Cars - Top Brands - Top Service. We work with top-rated international and leading local car rental
+                companies in 45,000 rental stations. We constantly assess our suppliers based on users' scores.</p>
+        </div>
+    </div>
+</div>
