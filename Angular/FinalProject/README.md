@@ -45,6 +45,7 @@ My project has 3 main modules.
 - Can reserve car
 - Create comments for cars
 - Personal profile page
+- Update own profile info
 - History
 
 ## Admin access
@@ -61,6 +62,7 @@ My project has 3 main modules.
 - CSS
 - Fontawsome
 - Angular 13
+- Angular material
 
 ## Backend
 - Back4app
