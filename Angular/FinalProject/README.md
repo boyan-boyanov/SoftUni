@@ -1,6 +1,6 @@
 # FinalProject
-My very first project 
-The project is for rental cars, and the part for payment is intentionally omitted.
+My very first project. 
+This project is for rental cars, and the part for payment is intentionally omitted.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
