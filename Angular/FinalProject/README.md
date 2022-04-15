@@ -1,27 +1,70 @@
 # FinalProject
+My very first project. 
+This project is for rental cars, and the part for payment is intentionally omitted.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
-## Development server
+## Modules
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+My project has 3 main modules.
+ 1. AUTH
+    - login
+    - register
+    - users
+ 2. CORE
+    - header
+    - footer
+ 3. FEATURES
+    - list of cars
+    - promotions
+    - home page
+    - info 
+    - car details
+    - history
+    - admin functions like:
+          - create new car
+          - edit car
+          - delete car 
 
-## Code scaffolding
+## All users access
+- home page
+- promo packages
+- info
+- reserve car page
+- login
+- register
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Not logged in users access
+- All users access
+- login
+- register
 
-## Build
+## Logged in users access
+- All users access
+- Cars details page
+- Can reserve car
+- Create comments for cars
+- Personal profile page
+- Update own profile info
+- History
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Admin access
+- Logged in users
+- Add new car
+- Edit cars details
+- Delete cars
 
-## Running unit tests
+# Technologies and stuff
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Frontend
+- HTML
+- Bootstrap
+- CSS
+- Fontawsome
+- Angular 13
+- Angular material
 
-## Running end-to-end tests
+## Backend
+- Back4app
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To start the application install all dependecies for the client and the server with npm install. Start the server with npm start and than the client with ng s. Than navigate to http://localhost:4200 in the browser.
