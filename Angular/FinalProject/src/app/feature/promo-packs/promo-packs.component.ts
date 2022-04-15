@@ -51,6 +51,8 @@ export class PromoPacksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let hiddenMenu = document.getElementById("hidden-nav-bar")
+       hiddenMenu!.style.display = "none"
   }
 
   onChangeEvent(event: any) {
@@ -58,8 +60,6 @@ export class PromoPacksComponent implements OnInit {
   }
 
   pushItem() {
-
-
     this.items.push('max')
   }
 

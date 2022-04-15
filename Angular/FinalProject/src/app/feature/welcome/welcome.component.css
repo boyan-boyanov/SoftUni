@@ -58,3 +58,9 @@
     background-color: black;
     opacity: 0.3;
 }
+
+@media screen and (width < 1400px){
+    .top-text h2{
+        font-size: 2vw;
+    }
+}

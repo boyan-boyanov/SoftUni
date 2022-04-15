@@ -2,11 +2,12 @@
     <a routerLink="/varnacars" class="logo">
         <img src="{{imageSrc}}" alt="logo">
     </a>
+    
     <nav class="header-nav">
         <ul>
             <li><a routerLink="varnacars/promo">PROMO PACKAGES</a></li>
-            <li><a routerLink="/">TRANSFERS</a></li>
-            <li><a routerLink="/">INFORMATION</a></li>            
+            <li><a>TRANSFERS</a></li>
+            <li><a routerLink="varnacars/info">INFORMATION</a></li>            
             </ul>
         <li><a class="header-nav-reserve" routerLink="varnacars/allcars">RESERVE</a></li>
     </nav>
@@ -24,14 +25,14 @@
             <li class="btn-profile"><a routerLink="/login">My profile</a></li>
         </ul>
     </div>
-    <div class="menu-triger">
-        <a id="menuBtn" routerLink="/"><img src="{{bars}}" alt="menu" class="fa-solid fa-bars"></a>
+    <div class="menu-triger" (click)="openMenu()">
+        <a id="menuBtn" ><img src="{{bars}}" alt="menu" class="fa-solid fa-bars"></a>
     </div>
     <ul id="hidden-nav-bar" class="hidden-nav-bar">
         <li id="reserved"><a class="header-nav-reserve" routerLink="varnacars/allcars">RESERVE</a></li>
-        <li><a routerLink="/">PROMO PACKAGES</a></li>
-        <li><a routerLink="/">TRANSFERS</a></li>
-        <li><a routerLink="/">INFORMATION</a></li>
+        <li><a routerLink="varnacars/promo">PROMO PACKAGES</a></li>
+        <li><a>TRANSFERS</a></li>
+        <li><a routerLink="varnacars/info">INFORMATION</a></li>
         <li id="myprofile" class="btn-profile"><a routerLink="/login">My profile</a></li>
     </ul>
     

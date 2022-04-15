@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AllCarsService } from '../../services/all-cars.service';
-import { Router, NavigationExtras } from '@angular/router';
-import { CurrentUserComponent } from 'src/app/auth/current-user/current-user.component';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { ReserveCarService } from 'src/app/services/reserve-car.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { IsAdminService } from 'src/app/services/is-admin.service';
@@ -19,8 +18,15 @@ export class CarComponent implements OnInit {
   isLoading: Boolean = false;
   admin: Boolean = false;
   isLoged: Boolean = false;
-  reservedArray: any = []
-  usedCars: Array<string> = []
+  reservedArray: any = [];
+  usedCars: Array<string> = [];
+  readonly pageSize = 3;
+  currentPage: number = 1;
+  totalPage: number;
+  showList: any;
+  pagination: Boolean = true
+  onSearch: Boolean = false
+  nissan: string = ""
 
 
   constructor(private getAllCarsServices: AllCarsService,
@@ -29,10 +35,14 @@ export class CarComponent implements OnInit {
     private getUserDataServices: UserDataService,
     private getAdminDataServices: IsAdminService,
     private deleteCarServices: EditCarService,
-    private usedCarSercices: UsedCarService) { }
+    private usedCarSercices: UsedCarService,
+    private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
+    let hiddenMenu = document.getElementById("hidden-nav-bar")
+    hiddenMenu!.style.display = "none"
+
     if (localStorage.getItem('userData') != null) {
       this.isLoged = true
       this.admin = this.getAdminDataServices.isAdmin()
@@ -50,9 +60,15 @@ export class CarComponent implements OnInit {
     this.getAllCarsServices.getAllCars().subscribe(data => {
       this.collectCars = data;
       this.allCars = this.collectCars.results
+      this.totalPage = Math.ceil(this.collectCars.results.length / this.pageSize)
+      this.showList = this.collectCars.results.slice(0, this.pageSize)
+      this.nissan = this.route.snapshot.params['info']
       this.isLoading = false;
+      if (this.nissan) {
+        this.findCar(this.nissan)
+      }
     });
-    
+
   }
 
   editCar(event: any) {
@@ -73,14 +89,13 @@ export class CarComponent implements OnInit {
 
   viewDetails(event: any) {
     const carId = event.target.parentElement.id
-    this.router.navigate(['/varnacars/allcars/' + carId, {used: this.usedCars}])
+    this.router.navigate(['/varnacars/allcars/' + carId, { used: this.usedCars }])
   }
 
   public reserveCar(event: any) {
     if (localStorage.getItem('userData') != null) {
 
       let curentUser = JSON.parse(localStorage.getItem('userData')!)
-      // console.log(curentUser.reservedCars);
       let reservedDate = new Date()
 
       this.getUserDataServices.getUserData(curentUser.objectId)
@@ -107,20 +122,54 @@ export class CarComponent implements OnInit {
     }
   }
 
-  findCar() {
+  findCar(special?) {
 
+    this.onSearch = true
     let key = document.getElementById('search')['value']
+    if (special) {
+      key = special;
+    }
     if (key.trim() == "") {
-      console.log('empty');
-      this.allCars = this.collectCars.results
+      this.showList = this.collectCars.results
+      this.pagination = false
       return
     }
+    this.pagination = true
     let myCars = this.collectCars.results.filter(car => car.carName.toLowerCase() == key.toLowerCase())
-    key = ""
+
+    if (myCars.length == 0) {
+      myCars = this.collectCars.results.filter(car => car.carModel.toLowerCase() == key.toLowerCase())
+    }
+    this.totalPage = Math.ceil(myCars.length / this.pageSize)
+    this.currentPage = 1
+    this.showList = myCars.slice(0, this.pageSize)
     this.allCars = myCars
   }
+  
   allItems() {
-    this.allCars = this.collectCars.results
+    this.onSearch = false
+    this.showList = this.collectCars.results
+    this.pagination = false
     return
   }
+
+  goPageBack(): void {
+    this.currentPage--
+    if (this.onSearch) {
+      this.showList = this.allCars.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+    } else {
+      this.showList = this.collectCars.results.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+    }
+  }
+
+  goPageForward(): void {
+    this.currentPage++
+    if (this.onSearch) {
+      this.showList = this.allCars.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+    } else {
+      this.showList = this.collectCars.results.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
+    }
+  }
 }
+
+

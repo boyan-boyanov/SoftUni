@@ -37,8 +37,6 @@ export class CarDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.usedCars = this.route.snapshot.params['used']
     this.usedCars = this.usedCars.split(',')
-    
-
 
     this.isLoading = true;
     this.getSingleCarServices.getSingleCar(this.carId).subscribe((data) => {
@@ -47,15 +45,8 @@ export class CarDetailsComponent implements OnInit {
       this.allComments = this.carData.comments
       this.admin = this.getAdminDataServices.isAdmin()
       this.isLoading = false;
-      // console.log(this.allComments);
-
-
-
     })
     this.userData = JSON.parse(localStorage.getItem("userData")!)
-    //console.log(this.userData);
-
-
   }
 
   onSubmit(event: any) {
@@ -98,9 +89,6 @@ export class CarDetailsComponent implements OnInit {
     });
 
     this.currentComment = oldComment
-
-
-
     let modalForm = document.getElementById("modalComment")
     modalForm!.style.display = "block"
 
@@ -131,7 +119,6 @@ export class CarDetailsComponent implements OnInit {
   }
 
   deleteComment(event: any) {
-    //console.log('delete');
     const comentInfo = event.target.parentElement.parentElement
     const oldDate = comentInfo.children[2].textContent
     this.currentCommentIndex = this.allComments.findIndex((object: { data: any; }) => {

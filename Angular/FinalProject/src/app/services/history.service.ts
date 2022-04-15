@@ -27,5 +27,4 @@ export class HistoryService {
     return this.http.put<Array<{}>>(BASE_URL + `/${id}`, history, { headers })
   }
 
-
 }

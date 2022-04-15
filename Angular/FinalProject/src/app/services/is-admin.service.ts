@@ -16,6 +16,5 @@ export class IsAdminService {
       return false
     }
 
-
   }
 }

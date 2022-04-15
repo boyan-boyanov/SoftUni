@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IaddCar } from '../../interfaces/addCar';
 import { AddCarsService } from '../../services/add-cars.service';
 
@@ -9,24 +10,28 @@ import { AddCarsService } from '../../services/add-cars.service';
 })
 export class AddNewCarComponent implements OnInit {
 
-  carModels = new IaddCar('', '', '', 0, 0, 0, '')
+  carModels = new IaddCar('', '', '', 4, 5, 300, '')
   errorMsg = "";
-  
-  constructor(private addCarServices: AddCarsService) { }
 
+  constructor(private addCarServices: AddCarsService, private router: Router) { }
 
   ngOnInit(): void {
-
   }
 
   onSubmit() {
-
-    this.addCarServices.enroll(this.carModels)
-      .subscribe(
-        data => console.log('Success!', data),
-        error => this.errorMsg = error.statusText
-      );
-
+    this.addCarServices.enroll(this.carModels).subscribe({
+      next: data => {
+        console.log('Success!', data)
+      },
+      complete: () => {
+        this.router.navigate(['varnacars/allcars'])
+      },
+      error: (error) => {
+        this.errorMsg = error.statusText
+      }
+    })
   }
 
 }
+
+

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDataService } from 'src/app/services/user-data.service';
@@ -27,8 +27,6 @@ export class HistoryComponent implements OnInit {
         for (let el of this.history) {
           this.totalSpend += Number(el.price)
         }
-
-
         this.isLoading = false;
       })
   }
@@ -39,7 +37,6 @@ export class HistoryComponent implements OnInit {
     let day = car.reservedDate.slice(8, 10)
     let time = car.reservedDate.slice(11, 19)
     let showDate = `Reserved on date: ${day}/${month}/${year} - time: ${time}`
-
     return showDate
   }
 
@@ -61,15 +58,13 @@ export class HistoryComponent implements OnInit {
   calcPrice(car) {
     let price = Math.floor((car.returnedTime - car.reservedTime) / 86400000 + 1) * car.price
     const test = document.querySelector("td.rentPrice")
-    // console.log(test);
-
+    
     return price
   }
 
   totalPrice(): void {
     const test = document.querySelectorAll("td.rentPrice")
-    //console.log(test);
-    let calc = 0
+       let calc = 0
     if (typeof test === "object") {
       for (let i = 0; i < test.length; i++) {
         calc += Number(test[i].textContent)

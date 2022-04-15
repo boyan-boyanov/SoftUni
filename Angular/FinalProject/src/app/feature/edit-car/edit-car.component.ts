@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router} from '@angular/router';
 import { IaddCar } from '../../interfaces/addCar';
 import { EditCarService } from '../../services/edit-car.service';
 import { SingleCarService } from '../../services/single-car.service';
@@ -10,15 +10,14 @@ import { SingleCarService } from '../../services/single-car.service';
   styleUrls: ['./edit-car.component.css']
 })
 export class EditCarComponent implements OnInit {
-  
-  
+
   carModels = new IaddCar('', '', '', 0, 0, 0, '')
-   
+
   errorMsg = "";
   carId = '';
   carData: any;
-  isLoading : Boolean = false;
-  
+  isLoading: Boolean = false;
+
   constructor(private getSingleCarServices: SingleCarService,
     private router: Router,
     private editCarServices: EditCarService) {
@@ -42,18 +41,15 @@ export class EditCarComponent implements OnInit {
         price: this.carData.price,
         images: this.carData.images,
       }
-      this.isLoading = false;               
+      this.isLoading = false;
     })
-
   }
 
-
-   onSubmit() {
-     this.editCarServices.editCars(this.carModels, this.carId)
-     .subscribe(data => console.log("edit", data),
-     error => this.errorMsg = error.statusText
-     )
-     this.router.navigate(['/varnacars/allcars']);
-   }
-
+  onSubmit() {
+    this.editCarServices.editCars(this.carModels, this.carId)
+      .subscribe(data => console.log("edit", data),
+        error => this.errorMsg = error.statusText
+      )
+    this.router.navigate(['/varnacars/allcars']);
+  }
 }

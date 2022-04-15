@@ -204,6 +204,9 @@ header .logo img {
         align-items: center;
         padding-top: 10px;
         flex-wrap: wrap;
+        z-index: 1;
+height: 120px;
+
     
     }
     

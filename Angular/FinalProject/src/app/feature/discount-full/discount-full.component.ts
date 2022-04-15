@@ -10,6 +10,7 @@ export class DiscountFullComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+      
   }
 
 }

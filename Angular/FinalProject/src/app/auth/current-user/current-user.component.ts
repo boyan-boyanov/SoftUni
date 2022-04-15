@@ -1,12 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, Pipe } from '@angular/core';
 import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { catchError, forkJoin, never, Observable } from 'rxjs';
 import { HistoryService } from 'src/app/services/history.service';
 import { ReserveCarService } from 'src/app/services/reserve-car.service';
 import { UsedCarService } from 'src/app/services/used-car.service';
 import { UserDataService } from 'src/app/services/user-data.service';
-
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { emailValidator, passwordMatch } from '../util';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-current-user',
@@ -22,16 +24,39 @@ export class CurrentUserComponent implements OnInit {
   isLoading: Boolean = false;
   history: any
   usedCars: any
+  newPic?: File
+  showForm: string = ""
+  loading = false
+  updateError = ''
+
+  passwordControl = new FormControl(null, [Validators.required, Validators.minLength(6)])
+
+  updateUsernameFormGroup: FormGroup = this.formBuilder.group({
+    "email": new FormControl('', [Validators.required, emailValidator]),
+    "username": new FormControl(null, [Validators.required, Validators.minLength(3)]),
+    "password": new FormControl(null, [Validators.required, Validators.minLength(6)]),
+  })
+
+  updatePasswordFormGroup: FormGroup = this.formBuilder.group({
+    "newpass": this.passwordControl,
+    "repass": new FormControl(null, [passwordMatch(this.passwordControl), Validators.minLength(1)]),
+    "oldpass": new FormControl(null, [Validators.required, Validators.minLength(6)])
+  })
+
 
   constructor(private router: Router,
     private getUserDataServices: UserDataService,
     private http: HttpClient,
     private reservedCarServices: ReserveCarService,
     private historyUserServices: HistoryService,
-    private usedCarService: UsedCarService) { }
+    private usedCarService: UsedCarService,
+    private formBuilder: FormBuilder,
+  ) { }
 
   userData: any;
   ngOnInit() {
+    let hiddenMenu = document.getElementById("hidden-nav-bar")
+    hiddenMenu!.style.display = "none"
     this.onInit()
   }
 
@@ -147,5 +172,61 @@ export class CurrentUserComponent implements OnInit {
     let showDate = `Reserved on date: ${day}/${month}/${year} - time: ${time}`
 
     return showDate
+  }
+
+  showEditProfile(formType: any, event) {
+    if (formType == 'username' && this.showForm != "") {
+      event.target.textContent = 'Edit profile'
+      this.showForm = ''
+    } else {
+      this.showForm = formType
+      if (formType == 'username') {
+        event.target.textContent = 'Hide'
+      }
+    }
+  }
+
+  updateUsername() {
+    this.loading = true;
+    const { email, username, password } = this.updateUsernameFormGroup.value
+    const userInfo = {
+      username: username,
+      email: email
+    }
+    this.getUserDataServices.getUserData(this.activeUser.objectId).subscribe({
+      next: data => {
+        if (password == data.repass) {
+          this.getUserDataServices.updateUserData(this.activeUser, userInfo).subscribe({
+            next: data => {
+              this.getUserDataServices.getUserData(this.activeUser.objectId).subscribe({
+                next: data => {
+                  localStorage.setItem('userData', JSON.stringify(data));
+
+                },
+                complete: () => {
+                  this.loading = false;
+                  this.showForm = '';
+                  this.onInit()
+                }
+              })
+            }
+          })
+        } else {
+          this.updateError = "Invalid Password";
+          this.loading = false;
+          setTimeout(() => {
+            this.updateError = "";
+          }, 5000);
+        }
+      },
+    })
+  }
+
+  updatePassword() {
+    this.updateError = "Sorry change password must be available soon...";
+          this.loading = false;
+          setTimeout(() => {
+            this.updateError = "";
+          }, 5000);
   }
 }

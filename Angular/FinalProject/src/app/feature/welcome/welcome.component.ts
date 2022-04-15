@@ -10,6 +10,8 @@ backgroundImg = '../assets/images/luxury-private-garage-wallpaper-preview.jpg'
   constructor() { }
 
   ngOnInit(): void {
+    let hiddenMenu = document.getElementById("hidden-nav-bar")
+       hiddenMenu!.style.display = "none"
   }
 
 }

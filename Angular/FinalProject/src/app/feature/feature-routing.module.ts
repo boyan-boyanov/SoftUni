@@ -7,6 +7,7 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarComponent } from './car/car.component';
 import { EditCarComponent } from './edit-car/edit-car.component';
 import { HistoryComponent } from './history/history.component';
+import { InformationComponent } from './information/information.component';
 import { PromoPacksComponent } from './promo-packs/promo-packs.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'varnacars/allcars/editcar', component: EditCarComponent, canActivate: [AdminGuard] },
   { path: 'varnacars/allcars/:id', component: CarDetailsComponent, canActivate: [ProfileGuard] },
   { path: 'varnacars/user/:id', component: HistoryComponent, canActivate: [ProfileGuard] },
-  {path: 'varnacars/promo', component: PromoPacksComponent}
+  {path: 'varnacars/promo', component: PromoPacksComponent},
+  {path: 'varnacars/info', component: InformationComponent}
 ];
 
 @NgModule({

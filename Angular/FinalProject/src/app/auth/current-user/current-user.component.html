@@ -12,14 +12,132 @@
 </div>
 <div *ngIf="!isLoading; else loadingIndicator">
     <div *ngIf="!admin">
-        <p class="infoUser">Welcome back {{activeUser.username | titlecase}}, now you {{!totalCars? "don't": ''}} have {{totalCars}} reserved
+        <p class="infoUser">Welcome back {{activeUser.username | titlecase}}, now you {{!totalCars? "don't": ''}} have
+            {{totalCars}} reserved
             cars.
         </p>
         <p class="infoUser" *ngIf="totalCars">Total cost per day: {{totalCosts}} $</p>
         <ul>
             <li><a (click)="getHistory()">Show history</a></li>
             <li><a routerLink="/" (click)="logout()">Logout</a></li>
+            <li><a (click)="showEditProfile('username', $event)">Edit profile</a></li>
         </ul>
+
+<div class="updateError" *ngIf="updateError">{{updateError}}</div>
+
+        <div id="editUserForms" *ngIf="showForm">
+            <p>Current username: {{activeUser.username}}</p>
+            <p>Current email: {{activeUser.email}}</p>
+
+            <form *ngIf="showForm == 'username'  || showForm == 'returnToUsername'"
+                [formGroup]="updateUsernameFormGroup">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Name..." formControlName="username" 
+                        [class.is-invalid]="updateUsernameFormGroup.controls['username'].touched && updateUsernameFormGroup.controls['username'].invalid">
+                    <ng-container
+                        *ngIf="updateUsernameFormGroup.controls['username'].touched && updateUsernameFormGroup.controls['username'].invalid">
+                        <small class="errorMessage"
+                            *ngIf="updateUsernameFormGroup.controls['username'].errors?.['required']">Username
+                            is
+                            required!</small>
+                        <small class="errorMessage"
+                            *ngIf="!updateUsernameFormGroup.controls['username'].errors?.['required'] && updateUsernameFormGroup.controls['username'].errors?.['minlength']">Username
+                            must be min 3 characters!</small>
+                    </ng-container>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="emailId" name="emailId" placeholder="Sokkar@gmail.com"
+                        formControlName="email"
+                        [class.is-invalid]="updateUsernameFormGroup.controls['email'].touched && updateUsernameFormGroup.controls['email'].invalid">
+                    <ng-container
+                        *ngIf="updateUsernameFormGroup.controls['email'].touched && updateUsernameFormGroup.controls['email'].invalid">
+                        <small class="errorMessage"
+                            *ngIf="updateUsernameFormGroup.controls['email'].errors?.['required']">Email
+                            is
+                            required!</small>
+                        <small class="errorMessage"
+                            *ngIf="!updateUsernameFormGroup.controls['email'].errors?.['required'] && updateUsernameFormGroup.controls['email'].errors?.['email']">Invalid
+                            email!</small>
+                    </ng-container>
+                </div>
+                
+                <div>
+                    <label for="password">Enter password to confirm</label>
+                    <input type="password" id="password" name="password" formControlName="password"
+                        [class.is-invalid]="updateUsernameFormGroup.controls['password'].touched && updateUsernameFormGroup.controls['password'].invalid">
+                    <ng-container
+                        *ngIf="updateUsernameFormGroup.controls['password'].touched && updateUsernameFormGroup.controls['password'].invalid">
+                        <small class="errorMessage"
+                            *ngIf="updateUsernameFormGroup.controls['password'].errors?.['required']">Password
+                            is
+                            required!</small>
+                        <small class="errorMessage"
+                            *ngIf="!updateUsernameFormGroup.controls['password'].errors?.['required'] && updateUsernameFormGroup.controls['password'].errors?.['minlength']">Password
+                            must
+                            be min 6 characters!!</small>
+                    </ng-container>
+                </div>
+                
+                    <button mat-raised-button [class.spinner]="loading" [disabled]="updateUsernameFormGroup.invalid" [disabled]="loading" (click)="updateUsername()">confirm</button>
+                
+                
+                <button (click)="showEditProfile('password', 'undefined')">Change password</button>
+            </form>
+
+
+            <form *ngIf="showForm == 'password'" [formGroup]="updatePasswordFormGroup">
+                <div>
+                    <label for="newpass">New password:</label>
+                    <input type="password" id="newpass" name="newpass" formControlName="newpass"
+                        [class.is-invalid]="updatePasswordFormGroup.controls['newpass'].touched && updatePasswordFormGroup.controls['newpass'].invalid">
+                    <ng-container
+                        *ngIf="updatePasswordFormGroup.controls['newpass'].touched && updatePasswordFormGroup.controls['newpass'].invalid">
+                        <small class="errorMessage"
+                            *ngIf="updatePasswordFormGroup.controls['newpass'].errors?.['required']">Password
+                            is
+                            required!</small>
+                        <small class="errorMessage"
+                            *ngIf="!updatePasswordFormGroup.controls['newpass'].errors?.['required'] && updatePasswordFormGroup.controls['newpass'].errors?.['minlength']">Password
+                            must
+                            be min 6 characters!!</small>
+                    </ng-container>
+                </div>
+
+                <div>
+                    <label for="repass">Confirm Password:</label>
+                    <input type="password" id="repass" name="repass" formControlName="repass" required
+                        [class.is-invalid]="updatePasswordFormGroup.controls['repass'].touched && updatePasswordFormGroup.controls['repass'].invalid">
+                    <ng-container
+                        *ngIf="updatePasswordFormGroup.controls['repass'].touched && updatePasswordFormGroup.controls['repass'].invalid">
+                        <small class="errorMessage"
+                            *ngIf="!updatePasswordFormGroup.controls['repass'].errors?.['required']">Password
+                            not match!!</small>
+                    </ng-container>
+                </div>
+
+                <div>
+                    <label for="oldpass">Old password:</label>
+                    <input type="password" id="oldpass" name="oldpass" formControlName="oldpass" required
+                        [class.is-invalid]="updatePasswordFormGroup.controls['oldpass'].touched && updatePasswordFormGroup.controls['oldpass'].invalid">
+                    <ng-container
+                        *ngIf="updatePasswordFormGroup.controls['oldpass'].touched && updatePasswordFormGroup.controls['oldpass'].invalid">
+                        <small class="errorMessage"
+                            *ngIf="updatePasswordFormGroup.controls['oldpass'].errors?.['required']">Password
+                            is
+                            required!</small>
+                        <small class="errorMessage"
+                            *ngIf="!updatePasswordFormGroup.controls['oldpass'].errors?.['required'] && updatePasswordFormGroup.controls['oldpass'].errors?.['minlength']">Password
+                            must
+                            be min 6 characters!!</small>
+                    </ng-container>
+                </div>
+                <button (click)="updatePassword()">confirm</button>
+                <button (click)="showEditProfile('returnToUsername', 'undefined')">back</button>
+            </form>
+        </div>
+
     </div>
 
     <div class="reserved" *ngIf="reservedCars">

@@ -13,6 +13,7 @@ import { HistoryComponent } from './history/history.component';
 import { PromoPacksComponent } from './promo-packs/promo-packs.component';
 import { DiscountTemplateComponent } from './discount-template/discount-template.component';
 import { DiscountFullComponent } from './discount-full/discount-full.component';
+import { InformationComponent } from './information/information.component';
 
 
 
@@ -27,7 +28,8 @@ import { DiscountFullComponent } from './discount-full/discount-full.component';
     HistoryComponent,
     PromoPacksComponent,
     DiscountTemplateComponent,
-    DiscountFullComponent],
+    DiscountFullComponent,
+    InformationComponent],
   imports: [
     CommonModule,
     FeatureRoutingModule,

@@ -1,20 +1,27 @@
- <div class="searchContainer">
-     <form class="searchCar" >
+<div class="searchContainer">
+    <form class="searchCar">
         <button (click)="allItems()">ALL CARS</button>
-         <input id="search" type="text" placeholder="search for your dream car...">
-         <button (click)="findCar()">SEARCH</button>
-     </form>
- </div>
- 
+        <input id="search" type="text" placeholder="search for your dream car...">
+        <button (click)="findCar()">SEARCH</button>
+    </form>
+</div>
+<div class="paginationMenu" *ngIf="pagination">
+    <button *ngIf="!isLoading" [disabled]="currentPage == 1" id="back" (click)="goPageBack()">
+        << previews</button>
+            <span *ngIf="!isLoading">Show {{currentPage}} of {{totalPage}} results {{totalPage}}</span>
+            
+            <button *ngIf="!isLoading" [disabled]="currentPage >= totalPage" id="forward"
+                (click)="goPageForward()">next >></button>
+</div>
 <div class="carContainer" *ngIf="!isLoading; else loadingIndicator">
-<p *ngIf="!allCars.length" class="errorFindCar">Sorry, we couldn't find a car with that name or model!</p>
-    <article  class="carTemlate" *ngFor="let car of allCars">
+    <p *ngIf="!allCars.length" class="errorFindCar">Sorry, we couldn't find a car with that name or model!</p>
+    <article class="carTemlate" *ngFor="let car of showList">
         <div class="carTemlate-img">
             <img [src]="car.images" alt="ix-rental">
             <span>{{car.price}} $/day</span>
             <div [ngClass]="usedCars.includes(car.objectId) ? 'carIsReservedTrue' : 'carIsReservedFalse'">RESERVED</div>
         </div>
-        <div  class="carName">
+        <div class="carName">
             <p>{{car.carName}} - {{car.carModel}}</p>
         </div>
         <div class="carInfo">
@@ -35,20 +42,27 @@
             </div>
         </div>
         <div class="buttons" id="{{car.objectId}}">
-            <button [disabled]="usedCars.includes(car.objectId)" *ngIf="isLoged && !admin"  class="reserve" (click)="reserveCar($event)">Reserve Now</button>
-            <button *ngIf="isLoged"  class="addFavorite" (click)="viewDetails($event)" >Details</button>
-            <button *ngIf="admin" class="edit"   (click)="editCar($event)">EDIT</button>
-            <button *ngIf="admin" class="delete"   (click)="deleteCar($event)">DELETE</button>
+            <button [disabled]="usedCars.includes(car.objectId)" *ngIf="isLoged && !admin" class="reserve"
+                (click)="reserveCar($event)">Reserve Now</button>
+            <button *ngIf="isLoged" class="addFavorite" (click)="viewDetails($event)">Details</button>
+            <button *ngIf="admin" class="edit" (click)="editCar($event)">EDIT</button>
+            <button *ngIf="admin" class="delete" (click)="deleteCar($event)">DELETE</button>
             <button class="reserve" *ngIf="!isLoged" routerLink="/login">LogIn for more options</button>
         </div>
-    </article>   
+    </article>
+</div>
+
+<div class="paginationMenu" *ngIf="pagination">
+    <button *ngIf="!isLoading" [disabled]="currentPage == 1" id="back" (click)="goPageBack()">
+        << back</button>
+            <span *ngIf="!isLoading">Show {{currentPage}} of {{totalPage}} results {{totalPage}}</span>
+            
+            <button *ngIf="!isLoading" [disabled]="currentPage >= totalPage" id="forward"
+                (click)="goPageForward()">forward >></button>
 </div>
 
 <ng-template #loadingIndicator>
     <div class="ring">Loading
         <span class="loader"></span>
-      </div>
+    </div>
 </ng-template>
-
-
-

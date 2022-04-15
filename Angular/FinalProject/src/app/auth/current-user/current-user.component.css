@@ -165,3 +165,109 @@ li a:hover {
     transform:rotate(405deg);
   }
 }
+
+@media screen and (width < 780px){
+  .container ul{
+    gap: 10px;
+  }
+}
+
+.is-invalid {
+  border: 2px solid red;
+}
+
+#editUserForms{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  margin-top: 30px;
+  width: 60vw;
+  margin-left: 20vw;
+}
+
+#editUserForms p {
+    width: fit-content;
+    color: #D02B16;
+    font-size: 2rem;
+}
+
+#editUserForms form {
+  flex-basis: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+#editUserForms form div{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 30%;
+}
+
+#editUserForms form input{
+  border: none;
+  border-radius: 10px;
+  background-color: grey;
+  padding-left: 20px;
+}
+
+
+
+#editUserForms form input:focus{
+outline: none;
+border: 2px solid #EA5B1B;
+}
+
+small {
+  color: red;
+}
+
+#editUserForms button{
+  width: 120px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  background-color: #EA5B1B;
+}
+
+#editUserForms button:hover{
+  background-color: #b74612;
+}
+
+#editUserForms button:disabled{
+  background-color: #555555;
+  color: #FFFFFF;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}
+
+.updateError {
+position: fixed;
+right: 200px;
+top: 150px;
+background-color: red;
+color: white;
+padding: 10px 20px;
+font-size: 20px;
+}
